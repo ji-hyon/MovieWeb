@@ -13,26 +13,24 @@ export default new Vuex.Store({
     createPersistedState()
   ],
   state: {
-    movies: [
-      {
-        id: 1,
-        title: '제목',
-        content: '내용',
-      }
-    ]
+    movies: []
   },
   getters: {
   },
   mutations: {
+    GET_MOVIES(state, movies) {
+      state.movies = movies
+    }
   },
   actions: {
     getMovies(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/movies/`
+        url: `${API_URL}/api/v1/movies/`,
       })
       .then(res =>
-        console.log(res, context)
+        // console.log(res, context)
+        context.commit('GET_MOVIES', res.data)
       )
       .catch(err =>
         console.log(err)

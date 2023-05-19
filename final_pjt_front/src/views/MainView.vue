@@ -1,7 +1,9 @@
 <template>
-  <div class="main">
-    <h1>Main Page</h1>
-    <MovieList/>
+  <div class="d-flex flex-wrap justify-content-center">
+    <MovieList 
+     v-for="movie in movies" 
+     :key="movie.id"
+     :movie ="movie" />
   </div>
 </template>
 
@@ -13,9 +15,17 @@ export default {
   components: {
     MovieList,
   },
+
   created() {
     this.getMovies()
   },
+
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    }
+  },
+
   methods: {
     getMovies() {
       this.$store.dispatch('getMovies')
