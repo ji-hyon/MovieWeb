@@ -4,6 +4,7 @@ import MainView from '../views/MainView.vue'
 import RecommendationView from '../views/RecommendationView.vue'
 import SignInView from '../views/SignInView.vue'
 import SignUpView from '../views/SignUpView.vue'
+import DetailView from '@/views/DetailView'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/:id',
+    name: 'DetailView',
+    component: DetailView,
   },
   // {
   //   path: '/about',

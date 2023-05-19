@@ -1,9 +1,10 @@
 <template>
   <div class="d-flex flex-wrap justify-content-center">
-    <MovieList 
+    <!-- <MovieList 
      v-for="movie in movies" 
      :key="movie.id"
-     :movie ="movie" />
+     :movie ="movie" /> -->
+     <MovieList v-for="(movies, genre) in genreMovies" :key="genre" :movies="movies" :genre="genre" />
   </div>
 </template>
 
@@ -22,7 +23,8 @@ export default {
 
   computed: {
     movies() {
-      return this.$store.state.movies
+      // return this.$store.state.movies
+      return this.$store.state.genreMovies
     }
   },
 

@@ -1,12 +1,29 @@
 <template>
-    <div class="movie-card">
+    <!-- <div class="movie-card">
       <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
-      <div class="movie-info">
-        <h2 class="movie-title">{{ movie.title }}</h2>
-        <p class="movie-overview">{{ movie.overview }}</p>
+      <div class="movie-info"> -->
+
+    <div>
+      <h2>{{ genre }}</h2>
+      <ul>
+        <li v-for="movie in movies" :key="movie.title">
+          {{ movie.title }}
+        </li>   
+      </ul>
+
+        <router-link
+          :to="{
+            name: 'DetailView',
+            params: { id: movie.id }
+          }"
+        >
+        [Detail]
+        </router-link>
+
+        <!-- <p class="movie-overview">{{ movie.overview }}</p>
         <p class="movie-release-date">{{ movie.release_date }}</p>
-        <p class="movie-rating">{{ movie.vote_average }}</p>
-      </div>
+        <p class="movie-rating">{{ movie.vote_average }}</p> -->
+      <!-- </div> -->
     </div>
 </template>
 
@@ -14,6 +31,7 @@
 // import MovieListItem from '@/components/MovieListItem'
 
 export default {
+
   name: 'MovieList',
   props: {
     movie: {
