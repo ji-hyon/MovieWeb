@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>Home Page</h1>
+  <div class="main">
+    <h1>Main Page</h1>
     <MovieList/>
   </div>
 </template>
@@ -9,7 +9,7 @@
 import MovieList from '@/components/MovieList.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'MainView',
   components: {
     MovieList,
   },
