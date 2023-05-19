@@ -25,7 +25,32 @@ export default {
 </script>
 
 <style>
-.movie-list {
-  text-align: start;
+.movie-cards-container {
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.movie-card {
+  width: 300px;
+  margin: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+}
+
+.movie-card .movie-info {
+  padding: 20px;
+}
+
+.movie-overview {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 </style>
