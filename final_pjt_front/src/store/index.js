@@ -13,14 +13,18 @@ export default new Vuex.Store({
     createPersistedState()
   ],
   state: {
-    movies: []
+    movies: [],
+    token: null,
   },
   getters: {
   },
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
-    }
+    },
+    SIGN_UP(state, token) {
+      state.token = token
+    },
   },
   actions: {
     getMovies(context) {
@@ -35,7 +39,28 @@ export default new Vuex.Store({
       .catch(err =>
         console.log(err)
       )
-    }
+    },
+    signUp(context, payload) {
+      const username = payload.username
+      const password1 = payload.password1
+      const password2 = payload.password2
+
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      })
+        .then((res) => {
+          // console.log(res)
+          context.commit('SIGN_UP', res.data.key)
+          // context.commit('SAVE_TOKEN', res.data.key)
+        })
+        .catch((err) => {
+        console.log(err)
+      })
+    },
   },
   modules: {
   }
