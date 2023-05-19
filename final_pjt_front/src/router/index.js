@@ -1,31 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MainView from '../views/MainView.vue'
-import RecommendationView from '../views/RecommendationView.vue'
-import SignInView from '../views/SignInView.vue'
-import SignUpView from '../views/SignUpView.vue'
+import MainView from '@/views/MainView.vue'
+import RecommendationView from '@/views/RecommendationView.vue'
+import SignUpView from '@/views/SignUpView.vue'
+import SignInView from '@/views/SignInView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'main',
+    name: 'MainView',
     component: MainView
   },
   {
     path: '/recommendation',
-    name: 'recommendation',
+    name: 'RecommendationView',
     component: RecommendationView
   },
   {
     path: '/signin',
-    name: 'signin',
+    name: 'SignInView',
     component: SignInView
   },
   {
     path: '/signup',
-    name: 'signup',
+    name: 'SignUpView',
     component: SignUpView
   },
   // {

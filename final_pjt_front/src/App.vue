@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <nav>
-      <router-link v-bind:to="{name: 'main'}">Main</router-link> |
-      <router-link v-bind:to="{name: 'recommendation'}">Recommendation</router-link> |
-      <router-link v-bind:to="{name: 'signin'}">SignIn</router-link> |
-      <router-link v-bind:to="{name: 'signup'}">SignUp</router-link>
+      <router-link v-bind:to="{name: 'MainView'}">Main</router-link> |
+      <router-link v-bind:to="{name: 'RecommendationView'}">Recommendation</router-link> |
+      <router-link v-bind:to="{name: 'SignInView'}">SignIn</router-link> |
+      <router-link v-bind:to="{name: 'SignUpView'}">SignUp</router-link>
     </nav>
     <router-view/>
   </div>
