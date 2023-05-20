@@ -1,17 +1,32 @@
 <template>
   <div>
-     <p>디테일 페이지</p>
+    <DetailMovie :movie = movies[movieId] />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import DetailMovie from '@/components/DetailMovie.vue'
+
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
     name: 'DetailView',
+    components: {
+      DetailMovie,
+    },
     created() {
         this.getMovieDetail()
+    },
+    data() {
+        return {
+            movieId : this.$route.params.id - 1
+        }
+    },
+    computed: {
+        movies() {
+            return this.$store.state.movies
+        }
     },
     methods: {
         getMovieDetail() {
