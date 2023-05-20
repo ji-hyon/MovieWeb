@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <nav>
+      <!-- 수정 테스트 -->
       <router-link v-bind:to="{name: 'MainView'}">Main</router-link> |
       <router-link v-bind:to="{name: 'RecommendationView'}">Recommendation</router-link> |
       <router-link v-bind:to="{name: 'SignInView'}">SignIn</router-link> |
