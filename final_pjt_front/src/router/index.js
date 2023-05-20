@@ -16,6 +16,11 @@ const routes = [
     component: MainView
   },
   {
+    path: '/:id',
+    name: 'DetailView',
+    component: DetailView
+  },
+  {
     path: '/recommendation',
     name: 'RecommendationView',
     component: RecommendationView
@@ -30,11 +35,7 @@ const routes = [
     name: 'SignUpView',
     component: SignUpView
   },
-  {
-    path: '/:id',
-    name: 'DetailView',
-    component: DetailView,
-  },
+
   // {
   //   path: '/about',
   //   name: 'about',

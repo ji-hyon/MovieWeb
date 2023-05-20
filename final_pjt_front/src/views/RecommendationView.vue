@@ -1,5 +1,21 @@
 <template>
-  <div class="signin">
-    <h1>This is an recommendation page</h1>
+  <div>
+    <RecommendedMovie/>
+
   </div>
 </template>
+
+<script>
+import RecommendedMovie from '@/components/RecommendedMovie.vue'
+
+export default {
+  name : 'RecommendationView',
+  components: {
+    RecommendedMovie
+  },
+}
+</script>
+
+<style>
+
+</style>
