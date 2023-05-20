@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/django,vue,venv
-# Edit at https://www.toptal.com/developers/gitignore?templates=django,vue,venv
+# Created by https://www.toptal.com/developers/gitignore/api/django,venv,vue,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,venv,vue,visualstudiocode
 
 ### Django ###
 *.log
@@ -183,6 +183,25 @@ cython_debug/
 pyvenv.cfg
 pip-selfcheck.json
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Vue ###
 # gitignore template for Vue.js projects
 #
@@ -194,4 +213,4 @@ docs/_book
 # TODO: where does this rule come from?
 test/
 
-# End of https://www.toptal.com/developers/gitignore/api/django,vue,venv
+# End of https://www.toptal.com/developers/gitignore/api/django,venv,vue,visualstudiocode
