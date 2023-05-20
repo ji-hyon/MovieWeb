@@ -15,15 +15,17 @@ export default new Vuex.Store({
 
   state: {
 
-    // movies: [],
+    movies: [],
     // genres: {},
 
-    movies: [],
     token: null,
     
   },
 
   getters: {
+    isLogin(state) {
+      return state.token ? true : false
+    }
   },
 
   mutations: {
@@ -35,9 +37,11 @@ export default new Vuex.Store({
    //  state.genres = genres
    // }
 
+    
     SAVE_TOKEN(state, token) {
       state.token = token
     }
+
 
   },
 
@@ -45,31 +49,32 @@ export default new Vuex.Store({
     getMovies(context) {
 
       // 장르 데이터 가져옴
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/genres/`
-      })
-      .then(res => {
-        const genres = res.data
-        context.commit('GET_GENRES', genres)
-        console.log(genres);
-      })
-      
+
+      // axios({
+      //   method: 'get',
+      //   url: `${API_URL}/api/v1/genres/`
+      // })
+      // .then(res => {
+      //   const genres = res.data
+      //   context.commit('GET_GENRES', genres)
+      //   console.log(genres);
+      // })
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
       })
       .then(res => {
         // console.log(res, context)
-        // context.commit('GET_MOVIES', res.data)
+        context.commit('GET_MOVIES', res.data)
         // 모든 영화 데이터 가져오기
-        const movies = res.data
-        context.commit('GET_MOVIES', movies)
+        // const movies = res.data
+        // context.commit('GET_MOVIES', movies)
       })
       .catch(err =>
         console.log(err)
       )
     },
+
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
@@ -82,6 +87,7 @@ export default new Vuex.Store({
           username, password1, password2
         }
       })
+
       .then((res) => {
         // console.log(res)
         // context.commit('SIGN_UP', res.data.key)
@@ -91,6 +97,7 @@ export default new Vuex.Store({
       console.log(err)
       })
     },
+
     signIn(context, payload) {
       const username = payload.username
       const password = payload.password
