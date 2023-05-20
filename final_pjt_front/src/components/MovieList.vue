@@ -1,15 +1,10 @@
 <template>
-    <!-- <div class="movie-card">
+    <div class="movie-card">
       <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
-      <div class="movie-info"> -->
+      <div class="movie-info">
 
-    <div>
-      <h2>{{ genre }}</h2>
-      <ul>
-        <li v-for="movie in movies" :key="movie.title">
-          {{ movie.title }}
-        </li>   
-      </ul>
+        <p>{{ movie.genre_ids }}</p>
+        <h2>{{ movie.title }}</h2>
 
         <router-link
           :to="{
@@ -20,10 +15,10 @@
         [Detail]
         </router-link>
 
-        <!-- <p class="movie-overview">{{ movie.overview }}</p>
+        <p class="movie-overview">{{ movie.overview }}</p>
         <p class="movie-release-date">{{ movie.release_date }}</p>
-        <p class="movie-rating">{{ movie.vote_average }}</p> -->
-      <!-- </div> -->
+        <p class="movie-rating">{{ movie.vote_average }}</p>
+      </div>
     </div>
 </template>
 
