@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import MainView from '../views/MainView.vue'
-import RecommendationView from '../views/RecommendationView.vue'
-import SignInView from '../views/SignInView.vue'
-import SignUpView from '../views/SignUpView.vue'
+import MainView from '@/views/MainView.vue'
+import RecommendationView from '@/views/RecommendationView.vue'
+import SignInView from '@/views/SignInView.vue'
+import SignUpView from '@/views/SignUpView.vue'
 import DetailView from '@/views/DetailView'
 
 Vue.use(VueRouter)
