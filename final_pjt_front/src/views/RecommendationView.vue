@@ -1,7 +1,9 @@
 <template>
   <div>
-    <RecommendedMovie/>
-
+    <button @click="RecommendMovie">영화 추천</button>
+    <p>
+      <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />
+    </p>
   </div>
 </template>
 
@@ -13,6 +15,23 @@ export default {
   components: {
     RecommendedMovie
   },
+  data() {
+    return {
+      randomMovie: null,
+    }
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies
+      // return this.$store.state.genreMovies
+    }
+  },
+  methods: {
+    RecommendMovie() {
+      const randomIndex = Math.floor(Math.random()*this.movies.length)
+      this.randomMovie = this.movies[randomIndex]
+    }
+  }
 }
 </script>
 
