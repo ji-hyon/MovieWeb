@@ -35,9 +35,9 @@ export default new Vuex.Store({
    //  state.genres = genres
    // }
 
-    SIGN_UP(state, token) {
+    SAVE_TOKEN(state, token) {
       state.token = token
-    },
+    }
 
   },
 
@@ -55,7 +55,6 @@ export default new Vuex.Store({
         console.log(genres);
       })
       
-
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
@@ -83,15 +82,31 @@ export default new Vuex.Store({
           username, password1, password2
         }
       })
-        .then((res) => {
-          // console.log(res)
-          context.commit('SIGN_UP', res.data.key)
-          // context.commit('SAVE_TOKEN', res.data.key)
-        })
-        .catch((err) => {
-        console.log(err)
+      .then((res) => {
+        // console.log(res)
+        // context.commit('SIGN_UP', res.data.key)
+        context.commit('SAVE_TOKEN', res.data.key)
+      })
+      .catch((err) => {
+      console.log(err)
       })
     },
+    signIn(context, payload) {
+      const username = payload.username
+      const password = payload.password
+
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/login/`,
+        data: {
+          username, password
+        }
+      })
+      .then(res => 
+      context.commit('SAVE_TOKEN', res.data.key)
+      )
+      .catch(err => console.log(err))
+    }
   },
 
   modules: {

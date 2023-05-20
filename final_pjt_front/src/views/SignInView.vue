@@ -1,5 +1,39 @@
 <template>
-  <div class="signin">
-    <h1>This is an signin page</h1>
+  <div>
+    <h1>SignIn Page</h1>
+    <form @submit.prevent="signIn">
+      <label for="username">username : </label>
+      <input type="text" id="username" v-model="username"><br>
+
+      <label for="password"> password : </label>
+      <input type="password" id="password" v-model="password"><br>
+
+      <input type="submit" value="SignIn">
+    </form>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'SignInView',
+  data() {
+    return {
+      username: null,
+      password: null,
+    }
+  },
+  methods: {
+    signIn() {
+      const username = this.username
+      const password = this.password
+
+      const payload = {
+        username, password
+      }
+
+      this.$store.dispatch('signIn', payload)
+
+    }
+  }
+}
+</script>
