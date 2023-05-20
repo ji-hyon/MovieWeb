@@ -12,30 +12,61 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState()
   ],
+
   state: {
+
+    // movies: [],
+    // genres: {},
+
     movies: [],
     token: null,
+    
   },
+
   getters: {
   },
+
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
+    
+   // GET_GENRES(state, genres){
+   //  state.genres = genres
+   // }
+
     SIGN_UP(state, token) {
       state.token = token
     },
+
   },
+
   actions: {
     getMovies(context) {
+
+      // 장르 데이터 가져옴
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/genres/`
+      })
+      .then(res => {
+        const genres = res.data
+        context.commit('GET_GENRES', genres)
+        console.log(genres);
+      })
+      
+
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
       })
-      .then(res =>
+      .then(res => {
         // console.log(res, context)
-        context.commit('GET_MOVIES', res.data)
-      )
+        // context.commit('GET_MOVIES', res.data)
+        // 모든 영화 데이터 가져오기
+        const movies = res.data
+        context.commit('GET_MOVIES', movies)
+      })
       .catch(err =>
         console.log(err)
       )
@@ -62,6 +93,7 @@ export default new Vuex.Store({
       })
     },
   },
+
   modules: {
   }
 })
