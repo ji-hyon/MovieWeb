@@ -4,7 +4,7 @@
      v-for="movie in movies" 
      :key="movie.id"
      :movie ="movie" />
-     <!-- <MovieList v-for="(movies, genre) in genreMovies" :key="genre" :movies="movies" :genre="genre" /> -->
+  <!-- <MovieList v-for="(movies, genre) in genreMovies" :key="genre" :movies="movies" :genre="genre" /> -->
   </div>
 </template>
 

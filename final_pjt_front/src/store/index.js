@@ -16,8 +16,6 @@ export default new Vuex.Store({
   state: {
 
     movies: [],
-    // genres: {},
-
     token: null,
     
   },
@@ -32,12 +30,7 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
-    
-   // GET_GENRES(state, genres){
-   //  state.genres = genres
-   // }
 
-    
     SAVE_TOKEN(state, token) {
       state.token = token
     }
@@ -47,9 +40,19 @@ export default new Vuex.Store({
 
   actions: {
     getMovies(context) {
-
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/`,
+      })
+      .then(res => {
+        // console.log(res, context)
+        context.commit('GET_MOVIES', res.data)
+      })
+      .catch(err =>
+        console.log(err)
+        )
+      },
       // 장르 데이터 가져옴
-
       // axios({
       //   method: 'get',
       //   url: `${API_URL}/api/v1/genres/`
@@ -59,21 +62,6 @@ export default new Vuex.Store({
       //   context.commit('GET_GENRES', genres)
       //   console.log(genres);
       // })
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/movies/`,
-      })
-      .then(res => {
-        // console.log(res, context)
-        context.commit('GET_MOVIES', res.data)
-        // 모든 영화 데이터 가져오기
-        // const movies = res.data
-        // context.commit('GET_MOVIES', movies)
-      })
-      .catch(err =>
-        console.log(err)
-      )
-    },
 
     signUp(context, payload) {
       const username = payload.username
@@ -113,7 +101,8 @@ export default new Vuex.Store({
       context.commit('SAVE_TOKEN', res.data.key)
       )
       .catch(err => console.log(err))
-    }
+    },
+  
   },
 
   modules: {
