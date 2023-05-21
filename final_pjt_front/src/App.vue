@@ -9,7 +9,8 @@
         <router-link v-bind:to="{name: 'SignUpView'}">SignUp</router-link>
       </template>
       <template v-if="isLogin">
-        <a v-on:click="signOut" style="text-decoration: underline;">SignOut</a>
+        <a v-on:click="signOut" style="text-decoration: underline;">SignOut</a> |
+        <router-link v-bind:to="{name: 'ProfileView'}">Profile</router-link>
       </template>
     </nav>
     <router-view/>
