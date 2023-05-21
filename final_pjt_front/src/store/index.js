@@ -30,6 +30,7 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
+    
 
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -102,7 +103,7 @@ export default new Vuex.Store({
       )
       .catch(err => console.log(err))
     },
-  
+
   },
 
   modules: {
