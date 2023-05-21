@@ -61,7 +61,7 @@ export default new Vuex.Store({
       })
       .catch((err) => {
         console.log(err)
-        )
+      })
       },
       // 장르 데이터 가져옴
       // axios({
