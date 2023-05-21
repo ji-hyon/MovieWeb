@@ -23,8 +23,6 @@
 </template>
 
 <script>
-// import MovieListItem from '@/components/MovieListItem'
-
 export default {
 
   name: 'MovieList',
