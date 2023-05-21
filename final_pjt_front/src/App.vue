@@ -4,12 +4,36 @@
       <!-- 수정 테스트 -->
       <router-link v-bind:to="{name: 'MainView'}">Main</router-link> |
       <router-link v-bind:to="{name: 'RecommendationView'}">Recommendation</router-link> |
-      <router-link v-bind:to="{name: 'SignInView'}">SignIn</router-link> |
-      <router-link v-bind:to="{name: 'SignUpView'}">SignUp</router-link>
+      <template v-if="isNotLogin">
+        <router-link v-bind:to="{name: 'SignInView'}">SignIn</router-link> |
+        <router-link v-bind:to="{name: 'SignUpView'}">SignUp</router-link>
+      </template>
+      <template v-if="isLogin">
+        <a v-on:click="signOut" style="text-decoration: underline;">SignOut</a>
+      </template>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+    isNotLogin() {
+      return this.$store.getters.isNotLogin
+    },
+  },
+
+  methods: {
+    signOut() {
+      this.$store.dispatch('signOut')
+    }
+  },
+}
+</script>
 
 <style>
 #app {
@@ -32,4 +56,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
