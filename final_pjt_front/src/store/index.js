@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 //
 import createPersistedState from 'vuex-persistedstate'
 import axios from 'axios'
+import router from '@/router'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -25,7 +26,10 @@ export default new Vuex.Store({
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
+    isNotLogin(state) {
+      return state.token ? false : true
+    },
   },
 
   mutations: {
@@ -38,10 +42,17 @@ export default new Vuex.Store({
    // }
 
     
-    SAVE_TOKEN(state, token) {
+    SAVE_TOKEN(state, {token, username}) {
       state.token = token
-    }
+      state.username = username
+      router.push({name: 'MainView'})
+    },
 
+    DELETE_TOKEN(state) {
+      state.token = null
+      state.username = null
+      // router.push({name: 'MainView'})
+    },
 
   },
 
@@ -63,16 +74,16 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
       })
-      .then(res => {
+      .then((res) => {
         // console.log(res, context)
         context.commit('GET_MOVIES', res.data)
         // 모든 영화 데이터 가져오기
         // const movies = res.data
         // context.commit('GET_MOVIES', movies)
       })
-      .catch(err =>
+      .catch((err) => {
         console.log(err)
-      )
+      })
     },
 
     signUp(context, payload) {
@@ -91,7 +102,7 @@ export default new Vuex.Store({
       .then((res) => {
         // console.log(res)
         // context.commit('SIGN_UP', res.data.key)
-        context.commit('SAVE_TOKEN', res.data.key)
+        context.commit('SAVE_TOKEN', {token: res.data.key, username: payload.username})
       })
       .catch((err) => {
       console.log(err)
@@ -109,11 +120,32 @@ export default new Vuex.Store({
           username, password
         }
       })
-      .then(res => 
-      context.commit('SAVE_TOKEN', res.data.key)
-      )
-      .catch(err => console.log(err))
-    }
+      .then((res) => {
+      context.commit('SAVE_TOKEN', {token: res.data.key, username: payload.username})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+
+    // 추가
+    signOut(context) {
+
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then(() => {
+        context.commit('DELETE_TOKEN')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+
   },
 
   modules: {
