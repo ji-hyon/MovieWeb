@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailMovie :movie=movies[movieId] />
+    <DetailMovie :movie=movies[movieId-1] />
     
     <MovieComment v-for = "(comment, index) in comments" 
     :key="index"
@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            movieId : this.$route.params.id - 1,
+            movieId : this.$route.params.id,
             comments : [],
             newCommentText: '',
         }

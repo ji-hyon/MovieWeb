@@ -11,10 +11,11 @@
 export default {
     name : 'DetailMovie',
     props: {
-        movie: {
-            type: Object,
-            required: true,
-    },
+      movie : Object
+        // movie: {
+            // type: Object,
+            // required: true,
+    // },
   },
 }
 </script>
