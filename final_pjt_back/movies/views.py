@@ -23,10 +23,9 @@ def movie_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = MovieSerializer(data=request.data)
+        serializer = MovieListSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            # serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -51,15 +50,8 @@ def movie_detail(request, movie_pk):
             return Response(serializer.data)
 
 
-@api_view(['GET'])
-def comment_list(request):
-    if request.method == 'GET':
-        # comments = Comment.objects.all()
-        comments = get_list_or_404(Comment)
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
 
-
+##############################################################
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
     # comment = Comment.objects.get(pk=comment_pk)
@@ -79,14 +71,22 @@ def comment_detail(request, comment_pk):
             serializer.save()
             return Response(serializer.data)
 
-    
-
-
-@api_view(['POST'])
-def comment_create(request, movie_pk):
-    # movie = Movie.objects.get(pk=movie_pk)
+@api_view(['POST', 'GET'])
+def comment_list(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    serializer = CommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    if request.method == 'POST':
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(movie=movie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    elif request.method == 'GET':
+        comments = movie.comment_set.all()
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+    # comments = Comment.objects.filter(movie_id=movie_pk)
+    # serializer = CommentSerializer(comments, many=True)
+    # return Response(serializer.data)
+
