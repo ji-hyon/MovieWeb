@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br>
     <button class="btn btn-primary" @click="RecommendMovie">영화 추천</button>
     <br><br>
     <p>

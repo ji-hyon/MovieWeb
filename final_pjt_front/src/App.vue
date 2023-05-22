@@ -2,15 +2,15 @@
   <div id="app">
     <nav>
       <!-- 수정 테스트 -->
-      <router-link v-bind:to="{name: 'MainView'}">Main</router-link> |
-      <router-link v-bind:to="{name: 'RecommendationView'}">Recommendation</router-link> |
+      <router-link v-bind:to="{name: 'MainView'}" class="nav-link">Main</router-link> 
+      <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link">Recommendation</router-link> 
       <template v-if="isNotLogin">
-        <router-link v-bind:to="{name: 'SignInView'}">SignIn</router-link> |
-        <router-link v-bind:to="{name: 'SignUpView'}">SignUp</router-link>
+        <router-link v-bind:to="{name: 'SignInView'}" class="nav-link">SignIn</router-link> 
+        <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link">SignUp</router-link>
       </template>
       <template v-if="isLogin">
-        <a v-on:click="signOut" style="text-decoration: underline;">SignOut</a> |
-        <router-link v-bind:to="{name: 'ProfileView'}">Profile</router-link>
+        <a v-on:click="signOut" style="text-decoration: underline;" class="nav-link">SignOut</a> 
+        <router-link v-bind:to="{name: 'ProfileView'}" class="nav-link">Profile</router-link>
       </template>
     </nav>
     <router-view/>
@@ -47,17 +47,20 @@ export default {
 
 nav {
   padding: 30px;
+  background-image: url(./assets/bg7.jpg); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: right;
 }
 
-nav a {
+.nav-link {
+  display: inline-block;
+  margin-right: 50px;
   font-weight: bold;
-  color: #2c3e50;
+  color: #f2f4f5;
+  text-decoration: none;
+  font-size: 18px
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-
 
 body {
   background-image: url(./assets/bg3_.jpg);
