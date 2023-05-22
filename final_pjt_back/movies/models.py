@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -19,6 +20,7 @@ class Movie(models.Model):
     vote_average = models.FloatField()
     vote_count = models.IntegerField()
     movie_id = models.IntegerField(unique=True)
+    liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='like_movies')
 
     def __str__(self):
         return self.title
