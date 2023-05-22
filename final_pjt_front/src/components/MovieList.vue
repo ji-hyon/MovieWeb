@@ -1,23 +1,28 @@
 <template>
-    <div class="movie-card">
-      <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+    <div class="movie-card-container">
+
+      <div class="movie-image">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+      </div>
+
       <div class="movie-info">
-
-        <p>{{ movie.genre_ids }}</p>
+        <!-- <p>{{ movie.genre_ids }}</p> -->
         <h2>{{ movie.title }}</h2>
-
-        <router-link
-          :to="{
-            name: 'DetailView',
-            params: { id: movie.id }
-          }"
-        >
-        [Detail]
-        </router-link>
-
-        <p class="movie-overview">{{ movie.overview }}</p>
-        <p class="movie-release-date">{{ movie.release_date }}</p>
-        <p class="movie-rating">{{ movie.vote_average }}</p>
+        <button class="btn btn-primary">
+          <router-link
+            :to="{
+              name: 'DetailView',
+              params: { id: movie.id }
+            }"
+            >
+            <p class="btn_letter">Detail</p>
+          </router-link>
+        </button>
+        <!-- <p class="movie-overview">{{ movie.overview }}</p> -->
+        <!-- <p class="movie-release-date">{{ movie.release_date }}</p> -->
+        <div>
+          <p class="movie-rating"><i class="bi bi-star-fill"></i> {{ movie.vote_average }}</p>
+        </div>
       </div>
     </div>
 </template>
@@ -36,32 +41,65 @@ export default {
 </script>
 
 <style>
-.movie-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movie-card {
+.movie-card-container {
   width: 300px;
   margin: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.movie-card img {
+.movie-image {
   width: 100%;
-  height: auto;
+  height: 0;
+  padding-top: 150%; /* 이미지의 측면 비율을 2:3으로 유지하기 위한 값을 설정 */
+  position: relative;
 }
 
-.movie-card .movie-info {
+.movie-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-info {
   padding: 20px;
+  text-align: center;
 }
 
-.movie-overview {
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.movie-info p,
+.movie-info h2 {
+  margin: 0;
 }
 
+.movie-info h2 {
+  margin-top: 10px;
+}
+
+.movie-info router-link {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.movie-rating {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.bi {
+  color: orange;
+}
+
+.btn_letter {
+  color: aliceblue;
+}
+
+/* .btn {
+  background-color: rgb(188, 238, 241);
+} */
 </style>
