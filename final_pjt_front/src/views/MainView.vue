@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="d-flex flex-wrap justify-content-center">
-      <MovieList
-        v-for="movie in paginatedMovies"
-        :key="movie.id"
-        :movie="movie"
-      />
+      <div class="d-flex flex-wrap justify-content-center">
+        <div v-for="(row, index) in paginatedMovies" :key="index" class="d-flex flex-wrap justify-content-center">
+          <div v-for="movie in row" :key="movie.id" class="w-25">
+            <MovieList :movie="movie" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="d-flex justify-content-center mt-3">
@@ -18,8 +20,6 @@
 import MovieList from '@/components/MovieList.vue'
 import vPagination from 'vue-plain-pagination'
 
-// 참고 : https://vuejsexamples.com/pagination-component-for-vue-js-2/
-
 export default {
   name: 'MainView',
   components: {
@@ -30,6 +30,8 @@ export default {
     return {
       currentPage: 1,
       itemsPerPage: 8,
+      moviesPerRow: 4,
+      rowsPerPage: 2,
     }
   },
   computed: {
@@ -42,7 +44,8 @@ export default {
     paginatedMovies() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage
       const endIndex = startIndex + this.itemsPerPage
-      return this.movies.slice(startIndex, endIndex)
+      const slicedMovies = this.movies.slice(startIndex, endIndex)
+      return this.chunkArray(slicedMovies, this.moviesPerRow).slice(0, this.rowsPerPage)
     },
   },
   created() {
@@ -51,6 +54,14 @@ export default {
   methods: {
     getMovies() {
       this.$store.dispatch('getMovies')
+    },
+    chunkArray(array, size) {
+      const chunkedArray = []
+      for (let i = 0; i < array.length; i += size) {
+        const chunk = array.slice(i, i + size)
+        chunkedArray.push(chunk)
+      }
+      return chunkedArray
     },
   },
 }
