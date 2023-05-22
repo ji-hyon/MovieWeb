@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="RecommendMovie">영화 추천</button>
+    <button class="btn btn-primary" @click="RecommendMovie">영화 추천</button>
+    <br><br>
     <p>
       <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />
     </p>

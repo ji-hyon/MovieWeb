@@ -17,6 +17,7 @@ export default new Vuex.Store({
   state: {
 
     movies: [],
+    genres: [],
     token: null,
     
   },
@@ -47,6 +48,10 @@ export default new Vuex.Store({
       router.push({name: 'SignInView'})
     },
 
+    GET_GENRES(state, genres) {
+      state.genres = genres
+    }
+
   },
 
   actions: {
@@ -63,16 +68,21 @@ export default new Vuex.Store({
         console.log(err)
       })
       },
-      // 장르 데이터 가져옴
-      // axios({
-      //   method: 'get',
-      //   url: `${API_URL}/api/v1/genres/`
-      // })
-      // .then(res => {
-      //   const genres = res.data
-      //   context.commit('GET_GENRES', genres)
-      //   console.log(genres);
-      // })
+
+    getGenres(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/genres/`
+      })
+      .then((res) => {
+        console.log(res, context);
+        const genres = res.data
+        context.commit('GET_GENRES', genres)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
 
     signUp(context, payload) {
       const username = payload.username

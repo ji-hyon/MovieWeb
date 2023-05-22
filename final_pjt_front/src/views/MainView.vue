@@ -1,4 +1,70 @@
 <template>
+  <!-- <div class="d-flex flex-wrap justify-content-center">
+    <MovieList 
+     v-for="movie in movies" 
+     :key="movie.id"
+     :movie ="movie" />
+  </div> -->
+
+  <div>
+    <div>
+      <div v-for="genre in genres" :key="genre.id">
+        <h2>{{ genre.name }}</h2>
+        <ul>
+          <MovieList 
+            v-for="movie in getMoviesByGenre(genre.id)" 
+            :key="movie.id"
+            :movie = "movie"
+          />
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<script>
+import MovieList from '@/components/MovieList.vue'
+
+export default {
+  name: 'MainView',
+  components: {
+    MovieList,
+  },
+
+  created() {
+    this.getMovies()
+    this.getGenres()
+  },
+
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    },
+    genres() {
+      return this.$store.state.genres
+    },
+  },
+
+  methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    },
+    getGenres() {
+      this.$store.dispatch('getGenres')
+    },
+    getMoviesByGenre(genreId) {
+      return this.movies.filter(movie => movie.genre_ids.includes(genreId))
+    }
+  }
+}
+</script>
+
+
+
+
+<!--###################### 페이지 ############################-->
+<!-- <template>
   <div>
     <div class="d-flex flex-wrap justify-content-center">
       <div class="d-flex flex-wrap justify-content-center">
@@ -65,4 +131,4 @@ export default {
     },
   },
 }
-</script>
+</script> -->
