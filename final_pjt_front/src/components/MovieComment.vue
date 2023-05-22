@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div v-bind="comment">
       {{ comment.content }}
       {{ comment.created_at }}
       <button @click="deleteComment(comment.id)">삭제</button>
-    </div>
   </div>
 </template>
 
@@ -33,14 +31,11 @@ export default {
       })
       .then((res)=> {
         console.log(res);
-        // emit써야 새로고침 안해도 삭제 반영됨 
-        // this.comments = this.comments.filter(comment => comment.id !== this.commentId)
         this.$emit('comment-deleted', this.comment.id);
       })
       .catch(err => console.log(err))
     }
   }
-
 }
 </script>
 
