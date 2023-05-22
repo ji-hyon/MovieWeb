@@ -1,22 +1,27 @@
 <template>
-  <!-- <div class="d-flex flex-wrap justify-content-center">
-    <MovieList 
-     v-for="movie in movies" 
-     :key="movie.id"
-     :movie ="movie" />
-  </div> -->
 
-  <div>
+  <!-- <div>
     <div>
       <div v-for="genre in genres" :key="genre.id">
         <h2>{{ genre.name }}</h2>
-        <ul>
+        <div class="d-flex flex-wrap justify-content-center">
           <MovieList 
-            v-for="movie in getMoviesByGenre(genre.id)" 
+            v-for="movie in getMoviesByGenre(genre.id).slice(0,8)" 
             :key="movie.id"
             :movie = "movie"
           />
-        </ul>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div>
+    <div v-for="genre in genres" :key="genre.pk">
+      <h2>{{ genre.name }}</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 4)" :key="index">
+          <MovieList :movie="movie" />
+        </div>
       </div>
     </div>
   </div>
@@ -55,11 +60,30 @@ export default {
     },
     getMoviesByGenre(genreId) {
       return this.movies.filter(movie => movie.genre_ids.includes(genreId))
+    },
+
+    chunkedMoviesByGenre(genreId, size) {
+    const moviesByGenre = this.getMoviesByGenre(genreId)
+    const chunkedArray = []
+    let chunk = []
+    for (let i = 0; i < moviesByGenre.length; i++) {
+      chunk.push(moviesByGenre[i])
+      if (chunk.length === size || i === moviesByGenre.length - 1) {
+        chunkedArray.push(chunk)
+        chunk = []
+      }
     }
+    return chunkedArray
+  },
+
+
   }
 }
 </script>
 
+<style>
+
+</style>
 
 
 

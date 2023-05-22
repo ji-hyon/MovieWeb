@@ -58,4 +58,14 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 
+
+body {
+  background-image: url(./assets/bg3_.jpg);
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-y;
+  /* background-size: cover; */
+}
+
 </style>

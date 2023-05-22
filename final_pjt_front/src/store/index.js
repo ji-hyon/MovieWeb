@@ -75,7 +75,7 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/genres/`
       })
       .then((res) => {
-        console.log(res, context);
+        // console.log(res, context);
         const genres = res.data
         context.commit('GET_GENRES', genres)
       })
