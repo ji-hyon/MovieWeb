@@ -15,7 +15,7 @@ export default new Vuex.Store({
   ],
 
   state: {
-
+    username: null,
     movies: [],
     token: null,
     
@@ -116,7 +116,6 @@ export default new Vuex.Store({
       })
     },
 
-    // 추가
     signOut(context) {
 
       axios({

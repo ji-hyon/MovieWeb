@@ -11,7 +11,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 from .models import Movie, Comment
-
+from accounts.models import User
 
 @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
@@ -49,9 +49,6 @@ def movie_detail(request, movie_pk):
             serializer.save()
             return Response(serializer.data)
 
-
-
-##############################################################
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
     # comment = Comment.objects.get(pk=comment_pk)
@@ -90,3 +87,36 @@ def comment_list(request, movie_pk):
     # serializer = CommentSerializer(comments, many=True)
     # return Response(serializer.data)
 
+@api_view(['POST'])
+def like_movie(request, movie_pk, username):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    user = get_object_or_404(User, username=username)
+
+    liked_users = movie.liked_users.all()
+
+    if user in liked_users:
+        movie.liked_users.remove(user)
+    else:
+        movie.liked_users.add(user)
+
+    serializer = MovieListSerializer(movie)
+    data = {'movie': serializer.data}
+    return Response(data)
+
+@api_view(['GET'])
+def like_movie_users(request, movie_pk, username):
+    movie = get_object_or_404(Movie.objects.only('liked_users'), pk=movie_pk)
+    user = get_object_or_404(User, username=username)
+
+    liked = movie.liked_users.filter(pk=user.pk).exists()
+
+    data = {'liked': liked}
+    return Response(data)
+
+@api_view(['GET'])
+def like_movie_count(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    likes_count = movie.liked_users.count()
+
+    data = {'likes_count': likes_count}
+    return Response(data)
