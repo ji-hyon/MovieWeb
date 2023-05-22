@@ -2,8 +2,8 @@
   <div>
     <DetailMovie :movie=movies[movieId-1] />
     
-    <MovieComment v-for = "(comment, index) in comments" 
-    :key="index"
+    <MovieComment v-for = "comment in comments" 
+    :key="comment.id"
     :comment="comment" 
     @comment-deleted="deleteComment"
     />
@@ -94,7 +94,6 @@ export default {
         deleteComment(deletedCommentId) {
             this.comments = this.comments.filter(comment => comment.id !== deletedCommentId);
         }
-
     }
 }
 </script>

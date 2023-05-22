@@ -1,8 +1,10 @@
 <template>
   <div>
-    {{ comment.content }}
-    {{ comment.created_at }}
-   <button @click="deleteComment(comment.id)">삭제</button>
+    <div v-bind="comment">
+      {{ comment.content }}
+      {{ comment.created_at }}
+      <button @click="deleteComment(comment.id)">삭제</button>
+    </div>
   </div>
 </template>
 
