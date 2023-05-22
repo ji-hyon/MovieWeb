@@ -12,6 +12,6 @@ urlpatterns = [
 
     # 좋아요 url 작성
     path('movies/<int:movie_pk>/like/<str:username>/', views.like_movie, name='like_movie'),
-    path('movies/<int:movie_pk>/like/count/<str:username>/', views.like_movie_users, name='like_movie_users'),
-    path('movies/<int:movie_pk>/likes/counts/', views.like_movie_count, name='like_movie_count'),    
+    path('movies/<int:movie_pk>/liked/users/<str:username>/', views.liked_users, name='liked_users'),
+    path('movies/<int:movie_pk>/liked/counts/', views.liked_counts, name='liked_counts'),
 ]
