@@ -95,15 +95,12 @@ def genre_list(request):
     serializer = GenreSerializer(genres, many=True)
     return Response(serializer.data)
     
-    
 @api_view(['POST'])
 def like_movie(request, movie_pk, username):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = get_object_or_404(User, username=username)
 
-    liked_users = movie.liked_users.all()
-
-    if user in liked_users:
+    if movie.liked_users.filter(pk=user.pk).exists():
         movie.liked_users.remove(user)
     else:
         movie.liked_users.add(user)
@@ -113,8 +110,8 @@ def like_movie(request, movie_pk, username):
     return Response(data)
 
 @api_view(['GET'])
-def like_movie_users(request, movie_pk, username):
-    movie = get_object_or_404(Movie.objects.only('liked_users'), pk=movie_pk)
+def liked_users(request, movie_pk, username):
+    movie = get_object_or_404(Movie, pk=movie_pk)
     user = get_object_or_404(User, username=username)
 
     liked = movie.liked_users.filter(pk=user.pk).exists()
@@ -122,8 +119,9 @@ def like_movie_users(request, movie_pk, username):
     data = {'liked': liked}
     return Response(data)
 
+
 @api_view(['GET'])
-def like_movie_count(request, movie_pk):
+def liked_counts(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     likes_count = movie.liked_users.count()
 
