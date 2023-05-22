@@ -1,23 +1,9 @@
 <template>
 
-  <!-- <div>
-    <div>
-      <div v-for="genre in genres" :key="genre.id">
-        <h2>{{ genre.name }}</h2>
-        <div class="d-flex flex-wrap justify-content-center">
-          <MovieList 
-            v-for="movie in getMoviesByGenre(genre.id).slice(0,8)" 
-            :key="movie.id"
-            :movie = "movie"
-          />
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <div>
     <div v-for="genre in genres" :key="genre.pk">
-      <h2>{{ genre.name }}</h2>
+      <br>
+      <h2 class="genre">{{ genre.name }}</h2>
       <div class="row justify-content-center">
         <div class="col-md-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 4)" :key="index">
           <MovieList :movie="movie" />
@@ -82,7 +68,9 @@ export default {
 </script>
 
 <style>
-
+.genre {
+  color: rgb(153, 78, 153);
+}
 </style>
 
 
