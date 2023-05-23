@@ -38,6 +38,7 @@ export default {
 .movie-rating {
   font-weight: bold;
   margin-top: 10px;
+  color: rgb(153, 78, 153);
 }
 
 .bi {

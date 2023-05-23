@@ -47,7 +47,7 @@ export default {
 
 nav {
   padding: 30px;
-  background-image: url(./assets/bg7.jpg); 
+  background-image: url(./assets/pastel.png); 
   background-repeat: no-repeat;
   background-size: cover;
   text-align: right;

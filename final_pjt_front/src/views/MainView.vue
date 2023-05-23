@@ -5,7 +5,7 @@
       <br>
       <h2 class="genre">{{ genre.name }}</h2>
       <div class="row justify-content-center">
-        <div class="col-md-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 4)" :key="index">
+        <div class="col-sm-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 4)" :key="index">
           <MovieList :movie="movie" />
         </div>
       </div>
@@ -70,6 +70,7 @@ export default {
 <style>
 .genre {
   color: rgb(153, 78, 153);
+  font-family: 'Black Han Sans', sans-serif;
 }
 </style>
 
