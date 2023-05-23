@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <nav>
-      <router-link v-bind:to="{name: 'MainView'}" class="nav-link">Main</router-link> 
-      <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link">Recommendation</router-link> 
+      <router-link v-bind:to="{name: 'MainView'}" class="nav-link" active-class="active-link">Main</router-link> 
+      <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" active-class="active-link">Recommendation</router-link> 
       <template v-if="isNotLogin">
-        <router-link v-bind:to="{name: 'SignInView'}" class="nav-link">SignIn</router-link> 
-        <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link">SignUp</router-link>
+        <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" active-class="active-link">SignIn</router-link> 
+        <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link" active-class="active-link">SignUp</router-link>
       </template>
       <template v-if="isLogin">
         <a v-on:click="signOut" class="nav-link">SignOut</a> 
@@ -26,6 +26,7 @@ export default {
       return this.$store.getters.isNotLogin
     },
   },
+
 
   methods: {
     signOut() {
@@ -60,10 +61,9 @@ nav {
   font-size: 18px
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link.active-link {
   color: purple;
 }
-
 
 body {
   background-image: url(./assets/bg3_.jpg);

@@ -76,9 +76,23 @@ export default {
 }
 
 .divider {
-  background: linear-gradient(to right, transparent, red, orange, yellow, green, blue, indigo, violet, transparent);
+  /* background: linear-gradient(to right, transparent, red, orange, yellow, green, blue, indigo, violet, transparent); */
+  background: linear-gradient(45deg, #ff0000,#ff7300, #fffb00, #48ff00,#00ffd5, #002bff, #7a00ff, #ff00c8,#ff0000);
+  animation: gradient1 5s ease infinite;
   height: 7px;
   margin: 20px 0;
+}
+
+@keyframes gradient1 {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 </style>
 
