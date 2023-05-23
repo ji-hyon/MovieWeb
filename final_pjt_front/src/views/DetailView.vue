@@ -11,7 +11,6 @@
     <!-- 하위 컴포넌트 -->
     <DetailMovie :movie=movies[movieId-1] />
 
-
     <!-- 댓글 입력 창 -->
     <div class="cmt">
         <h2 class="comment">댓글</h2>
@@ -28,15 +27,7 @@
         @comment-deleted="deleteComment"
         />
     </div>
-
-    <div v-if="$store.state.token">
-        <h2>Comment</h2>
-        <form @submit.prevent="addComment">
-            <textarea v-model="newCommentText" placeholder="" style="width: 50%;"></textarea>
-            <button type="submit">댓글 달기</button>
-        </form>
-    </div>
-
+    
   </div>
 </template>
 
