@@ -2,22 +2,26 @@
   <div>
     <DetailMovie :movie=movies[movieId-1] />
 
-    <button @click="[movieLike(), getMovieLike(), getMovieLikeCount()]">
-        {{ liked ? '좋아요 취소' : '좋아요' }}
-    </button>
+    <!-- 좋아요 버튼 -->
+    <a class="heart-button" @click="[movieLike(), getMovieLike(), getMovieLikeCount()]">
+        <i class="heart" :class="liked ? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart'"></i>
+    </a> 
     <p>좋아요 : {{ likes_count }}</p>
 
+    <!-- 댓글 입력 창 -->
+    <h2 class="comment">댓글</h2>
+        <form @submit.prevent="addComment">
+            <textarea class="textarea" v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
+            <button type="submit">댓글 달기</button>
+        </form>
+
+    <!-- 댓글 데이터 -->
     <MovieComment v-for = "comment in comments"
       :key="comment.id"
       :comment="comment" 
       @comment-deleted="deleteComment"
     />
 
-    <h2>Comment</h2>
-    <form @submit.prevent="addComment">
-        <textarea v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
-        <button type="submit">댓글 달기</button>
-    </form>
   </div>
 </template>
 
@@ -166,5 +170,17 @@ export default {
 </script>
 
 <style>
+.comment {
+  color: rgb(153, 78, 153);
+  font-family: 'Black Han Sans', sans-serif;
+}
 
+.textarea {
+    border-radius: 20px;
+    border: 2px solid rgb(153, 78, 153);
+}
+
+.heart {
+    color: red;
+}
 </style>

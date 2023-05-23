@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-page">
 
   <div class="movie-container">
 
@@ -135,10 +135,11 @@ export default {
   }
 </script>
 
-<style scoped>
+<style>
 .title {
   padding: 20px;
   color: rgb(153, 78, 153);
+  font-family: 'Black Han Sans', sans-serif;
 }
 
 .movie-container {
@@ -168,6 +169,10 @@ export default {
   margin-top: 50px;
 }
 
+
+
+
+
 /* ########################## */
 
 @media (max-width: 700px) {
@@ -187,6 +192,7 @@ export default {
   .content {
     width: 100%;
   }
+
 }
 
 </style>
