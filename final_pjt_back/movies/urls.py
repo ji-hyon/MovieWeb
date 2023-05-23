@@ -16,4 +16,7 @@ urlpatterns = [
     path('movies/<int:movie_pk>/liked/counts/', views.liked_counts, name='liked_counts'),
 
     path('users/<str:username>/liked_movies/', views.user_liked_movies, name='user_liked_movies'),
+
+    path('comments/<int:comment_pk>/update/', views.comment_update, name='comment_update'),
+
 ]
