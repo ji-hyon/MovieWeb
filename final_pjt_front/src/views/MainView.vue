@@ -1,27 +1,49 @@
 <template>
 
-  <div class="container">
+  <div>
     <div v-for="genre in genres" :key="genre.pk">
       <br>
       <hr class="divider">
       <h2 class="genre">{{ genre.name }}</h2>
-      <div class="row justify-content-center">
-        <div class="col-sm-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 6)" :key="index">
-          <MovieList :movie="movie" />
+        <div class="swiper-container"> 
+          <div class="swiper-wrapper"> 
+
+              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 6)" :key="index" :movie="movie" />
+
+          </div>
+        <div class="swiper-pagination"></div>
         </div>
       </div>
-    </div>
   </div>
+
 
 </template>
 
 <script>
+// import "../public/script.js"
+import Swiper from 'swiper'
 import MovieList from '@/components/MovieList.vue'
 
 export default {
   name: 'MainView',
   components: {
     MovieList,
+  },
+
+  mounted() {
+ new Swiper('.swiper-container', {
+  slidesPerView: 'auto',
+  initialSlide: 2,
+  speed: 1000,
+  spaceBetween: 32,
+  loop: true,
+  centeredSlides: true,
+  roundLengths: true,
+  mousewheel: true,
+  grabCursor: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true } });
   },
 
   created() {
@@ -68,7 +90,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+*, ::after, ::before {
+  box-sizing: unset;
+}
+
 .genre {
   color: rgb(153, 78, 153);
   font-family: 'Black Han Sans', sans-serif;
@@ -94,6 +120,126 @@ export default {
         background-position: 0% 50%;
     }
 }
+
+.swiper-container {
+  height: 400px;
+  width: 100%;
+  padding-bottom: 85px;
+}
+
+.swiper-wrapper {
+  width: 73.8%;
+  will-change: transform;
+}
+@media (min-width: 630px) {
+  .swiper-wrapper {
+    width: 100%;
+  }
+}
+
+.swiper-slide {
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+}
+.swiper-slide.swiper-slide-active .slide-image, .swiper-slide.swiper-slide-duplicate-active .slide-image {
+  transform: scale3d(1, 1, 1);
+}
+@media (min-width: 630px) {
+  .swiper-slide {
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .swiper-slide {
+    width: 33.333333%;
+  }
+  .swiper-slide.swiper-slide-next .slide-image, .swiper-slide.swiper-slide-prev .slide-image, .swiper-slide.swiper-slide-duplicate-next .slide-image, .swiper-slide.swiper-slide-duplicate-prev .slide-image {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@media (min-width: 1024px) {
+  .swiper-slide {
+    width: 25%;
+  }
+}
+
+.swiper-pagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+}
+.swiper-pagination.swiper-pagination {
+  bottom: 0;
+}
+
+.swiper-pagination-bullet {
+  background: tomato;
+  width: 22px;
+  height: 4px;
+  border-radius: 0;
+  transition: opacity 1s ease;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet.swiper-pagination-bullet {
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .swiper-pagination-bullet {
+    width: 40px;
+  }
+}
+
+.slide-image {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transform: scale3d(1.3, 1.3, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 1400ms ease;
+}
+
+.slide-content {
+  padding: 0 2.2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.slide-content h4 {
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0 0 1rem;
+  padding-top: 2.8rem;
+  flex-grow: 0;
+}
+.slide-content p {
+  display: flex;
+  line-height: 1.8;
+  margin-top: 0;
+  font-size: 14px;
+  flex-grow: 1;
+}
+.slide-content footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 2.8rem;
+  font-size: 14px;
+  color: #c2c0e0;
+}
+.slide-content a {
+  color: tomato;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 3px solid currentColor;
+  padding-bottom: 3px;
+}
+
 </style>
 
 
