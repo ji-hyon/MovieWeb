@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="container">
     <div v-for="genre in genres" :key="genre.pk">
       <br>
       <hr class="divider">
