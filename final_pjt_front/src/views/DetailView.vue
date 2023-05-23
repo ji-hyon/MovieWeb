@@ -87,8 +87,7 @@ export default {
 
         addComment() {
             const movieId = this.movieId
-            const content = this.newCommentText
-  
+            const content = this.newCommentText  
             const data = {
                 movie: movieId,
                 content: content

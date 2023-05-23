@@ -10,7 +10,7 @@
       </template>
       <template v-if="isLogin">
         <a v-on:click="signOut" style="text-decoration: underline;" class="nav-link">SignOut</a> 
-        <router-link v-bind:to="{name: 'ProfileView'}" class="nav-link">Profile</router-link>
+        <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link">Profile</router-link>
       </template>
     </nav>
     <router-view/>
