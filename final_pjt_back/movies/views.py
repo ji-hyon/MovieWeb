@@ -137,3 +137,12 @@ def user_liked_movies(request, username):
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
+@api_view(['PUT'])
+def comment_update(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
