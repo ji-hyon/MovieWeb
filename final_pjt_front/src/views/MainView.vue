@@ -77,7 +77,7 @@ export default {
 
 .divider {
   background: linear-gradient(to right, transparent, red, orange, yellow, green, blue, indigo, violet, transparent);
-  height: 6px;
+  height: 7px;
   margin: 20px 0;
 }
 </style>
