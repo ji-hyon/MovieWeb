@@ -3,9 +3,10 @@
   <div>
     <div v-for="genre in genres" :key="genre.pk">
       <br>
+      <hr class="divider">
       <h2 class="genre">{{ genre.name }}</h2>
       <div class="row justify-content-center">
-        <div class="col-sm-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 4)" :key="index">
+        <div class="col-sm-2 mb-3" v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 6)" :key="index">
           <MovieList :movie="movie" />
         </div>
       </div>
@@ -71,6 +72,13 @@ export default {
 .genre {
   color: rgb(153, 78, 153);
   font-family: 'Black Han Sans', sans-serif;
+  padding: 15px;
+}
+
+.divider {
+  background: linear-gradient(to right, transparent, red, orange, yellow, green, blue, indigo, violet, transparent);
+  height: 6px;
+  margin: 20px 0;
 }
 </style>
 
