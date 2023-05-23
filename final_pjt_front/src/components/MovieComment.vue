@@ -1,10 +1,11 @@
 <template>
   <div>
     <div v-if="!isEditing">
+      {{ comment.user.username }}
       {{ editedComment.content }}
       {{ editedComment.created_at }}
-      <button @click="deleteComment(editedComment.id)">삭제</button>
-      <button @click="editComment">수정</button>
+      <button @click="deleteComment(editedComment.id)" v-show="btn_check">삭제</button>
+      <button @click="editComment" v-show="btn_check">수정</button>
     </div>
     <div v-else>
       <textarea v-model="editedComment.content" placeholder="댓글을 입력하세요"></textarea>
@@ -30,11 +31,13 @@ export default {
     return {
       isEditing: false,
       editedComment: {},
+      btn_check: false,
     }
   },
 
-  mounted() {
+  created() {
     this.editedComment = Object.assign({}, this.comment);
+    this.btn_check = this.$store.state.username === this.editedComment.user.username;
   },
 
   methods: {
