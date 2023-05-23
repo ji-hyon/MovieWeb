@@ -15,7 +15,7 @@
 
     <h2>Comment</h2>
     <form @submit.prevent="addComment">
-        <textarea v-model="newCommentText" placeholder="댓글을 입력하세요"></textarea>
+        <textarea v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
         <button type="submit">댓글 달기</button>
     </form>
   </div>
