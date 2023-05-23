@@ -138,6 +138,7 @@ export default {
 <style scoped>
 .title {
   padding: 20px;
+  color: rgb(153, 78, 153);
 }
 
 .movie-container {
@@ -153,11 +154,39 @@ export default {
 }
 
 .img {
-  flex: 1;
+  margin-left: 70px;
 }
 
 .content {
   width: 600px;
+}
+
+.details {
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 50px;
+}
+
+/* ########################## */
+
+@media (max-width: 700px) {
+  /* 화면이 700px 이하일 때 스타일을 변경 */
+  .movie-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 200px;
+    height: auto;
+  }
+
+  .content {
+    width: 100%;
+  }
 }
 
 </style>
