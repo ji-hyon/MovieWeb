@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-card-container">
+  <!-- <div class="movie-card-container">
     <router-link :to="{ name: 'DetailView', params: { id: movie.id } }">
       <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
     </router-link>
@@ -9,14 +9,29 @@
     <div>
       <p class="movie-rating"><i class="bi bi-star-fill"></i> {{ movie.vote_average }}</p>
     </div>
-  </div>
+  </div> -->
+  
+
+   
+      <div class="swiper-slide">
+        <router-link :to="{ name: 'DetailView', params: { id: movie.id } }">
+            <div class="slide-image" :style="imgUrl"></div>
+        </router-link>
+        <p class="movie-rating"><i class="bi bi-star-fill"></i> {{ movie.vote_average }}</p>
+      </div>
+  
+
 </template>
 
 
 <script>
   export default {
-
     name: 'MovieList',
+    data(){
+      return {
+        imgUrl: `background-image: url(https://image.tmdb.org/t/p/w500${this.movie.poster_path})`
+      }
+    },
     props: {
       movie: {
         type: Object,
@@ -27,7 +42,11 @@
 </script>
 
 
-<style>
+<style scoped>
+*, ::after, ::before {
+  box-sizing: unset;
+}
+
 .movie-card-container {
   width: 200px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
