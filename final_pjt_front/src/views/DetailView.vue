@@ -13,11 +13,13 @@
       @comment-deleted="deleteComment"
     />
 
-    <h2>Comment</h2>
-    <form @submit.prevent="addComment">
-        <textarea v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
-        <button type="submit">댓글 달기</button>
-    </form>
+    <div v-if="$store.state.token">
+        <h2>Comment</h2>
+        <form @submit.prevent="addComment">
+            <textarea v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
+            <button type="submit">댓글 달기</button>
+        </form>
+    </div>
   </div>
 </template>
 
@@ -96,6 +98,9 @@ export default {
                 method: 'post',
                 url:`${API_URL}/api/v1/movies/${this.movieId}/comments/`,
                 data: data,
+                headers: {
+                    Authorization: `Token ${this.$store.state.token}`
+                }
             })
             .then((res) => {
                 // console.log(res)
