@@ -36,6 +36,8 @@ import axios from 'axios'
 import DetailMovie from '@/components/DetailMovie.vue'
 import MovieComment from '@/components/MovieComment.vue'
 
+// import SignInView from '@/views/SignInView.vue'
+
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
@@ -125,6 +127,11 @@ export default {
         },
 
         movieLike() {
+            if (!this.$store.state.token) {
+                this.$router.push({ name: 'SignInView' })
+                return
+            }
+
             axios({
                 method: 'post',
                 url: `${API_URL}/api/v1/movies/${this.movieId}/like/${this.$store.state.username}/`,
@@ -133,12 +140,12 @@ export default {
                 },
             })
             .then(() => {
-                this.getMovieLike()
-                this.getMovieLikeCount()
+                this.getMovieLike();
+                this.getMovieLikeCount();
             })     
             .catch((err) => {
-                console.log(err)
-            })
+                console.log(err);
+            });
         },
 
         getMovieLike() {
