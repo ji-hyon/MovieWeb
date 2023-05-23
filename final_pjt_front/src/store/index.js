@@ -96,7 +96,6 @@ export default new Vuex.Store({
           username, password1, password2
         }
       })
-
       .then((res) => {
         // console.log(res)
         // context.commit('SIGN_UP', res.data.key)
@@ -110,7 +109,6 @@ export default new Vuex.Store({
     signIn(context, payload) {
       const username = payload.username
       const password = payload.password
-
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
@@ -127,7 +125,6 @@ export default new Vuex.Store({
     },
 
     signOut(context) {
-
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,

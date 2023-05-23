@@ -128,5 +128,12 @@ def liked_counts(request, movie_pk):
     data = {'likes_count': likes_count}
     return Response(data)
 
+from accounts.models import User
 
+@api_view(['GET'])
+def user_liked_movies(request, username):
+    user = get_object_or_404(User, username=username)
+    movies = Movie.objects.filter(liked_users=user)
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
