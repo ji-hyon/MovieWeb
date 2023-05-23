@@ -16,7 +16,8 @@
         <h2 class="comment">댓글</h2>
             <form @submit.prevent="addComment" v-if="$store.state.token">
                 <textarea class="textarea" v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
-                <button type="submit">댓글 달기</button>
+                <!-- <button type="submit">댓글 달기</button> -->
+                <button class="w-btn w-btn-gra1" type="button">댓글 달기</button>
             </form>
 
         <!-- 댓글 데이터 -->
@@ -26,7 +27,7 @@
         @comment-deleted="deleteComment"
         />
     </div>
-
+    
   </div>
 </template>
 
@@ -209,5 +210,14 @@ export default {
     font-weight: bold; 
     color: purple;
 }
+
+.w-btn-gra1 {
+    background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+    color: white;
+    border-radius: 10px;
+    border-color: aliceblue;
+}
+
+
 
 </style>
