@@ -1,26 +1,32 @@
 <template>
   <div>
+      <!-- 좋아요 버튼 -->
+      <div class="like">
+          <a class="heart-button" @click="[movieLike(), getMovieLike(), getMovieLikeCount()]">
+              <i class="heart" :class="liked ? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart'"></i>
+          </a> 
+          <p class="like-letter">좋아요 : {{ likes_count }}</p>
+      </div>
+
+    <!-- 하위 컴포넌트 -->
     <DetailMovie :movie=movies[movieId-1] />
 
-    <!-- 좋아요 버튼 -->
-    <a class="heart-button" @click="[movieLike(), getMovieLike(), getMovieLikeCount()]">
-        <i class="heart" :class="liked ? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart'"></i>
-    </a> 
-    <p>좋아요 : {{ likes_count }}</p>
 
     <!-- 댓글 입력 창 -->
-    <h2 class="comment">댓글</h2>
-        <form @submit.prevent="addComment">
-            <textarea class="textarea" v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
-            <button type="submit">댓글 달기</button>
-        </form>
+    <div class="cmt">
+        <h2 class="comment">댓글</h2>
+            <form @submit.prevent="addComment" v-if="$store.state.token">
+                <textarea class="textarea" v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
+                <button type="submit">댓글 달기</button>
+            </form>
 
-    <!-- 댓글 데이터 -->
-    <MovieComment v-for = "comment in comments"
-      :key="comment.id"
-      :comment="comment" 
-      @comment-deleted="deleteComment"
-    />
+        <!-- 댓글 데이터 -->
+        <MovieComment v-for = "comment in comments"
+        :key="comment.id"
+        :comment="comment" 
+        @comment-deleted="deleteComment"
+        />
+    </div>
 
   </div>
 </template>
@@ -181,6 +187,25 @@ export default {
 }
 
 .heart {
-    color: red;
+    color: rgb(202, 34, 202);
+    font-size: 30px;
+    padding: 10px;
 }
+
+.cmt {
+    margin-bottom: 70px;
+}
+
+.like {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.like-letter{
+    margin-top: 13px;
+    font-weight: bold; 
+    color: purple;
+}
+
 </style>

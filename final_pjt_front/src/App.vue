@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <nav>
-      <!-- 수정 테스트 -->
       <router-link v-bind:to="{name: 'MainView'}" class="nav-link">Main</router-link> 
       <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link">Recommendation</router-link> 
       <template v-if="isNotLogin">
@@ -9,7 +8,7 @@
         <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link">SignUp</router-link>
       </template>
       <template v-if="isLogin">
-        <a v-on:click="signOut" style="text-decoration: underline;" class="nav-link">SignOut</a> 
+        <a v-on:click="signOut" class="nav-link">SignOut</a> 
         <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link">Profile</router-link>
       </template>
     </nav>
@@ -60,6 +59,11 @@ nav {
   text-decoration: none;
   font-size: 18px
 }
+
+.nav-link:hover {
+  color: purple;
+}
+
 
 body {
   background-image: url(./assets/bg3_.jpg);
