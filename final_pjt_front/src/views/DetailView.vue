@@ -14,11 +14,11 @@
     <!-- 댓글 입력 창 -->
     <div class="cmt">
         <h2 class="comment">댓글</h2>
-            <form @submit.prevent="addComment" v-if="$store.state.token">
-                <textarea class="textarea" v-model="newCommentText" placeholder="댓글을 입력하세요" style="width: 50%;"></textarea>
-                <!-- <button type="submit">댓글 달기</button> -->
-                <button class="w-btn w-btn-gra1" type="button">댓글 달기</button>
+            <form class="inner" @submit.prevent="addComment" v-if="$store.state.token">
+                <textarea class="textarea" v-model="newCommentText" placeholder="" style="width: 50%;"></textarea>
+                <button class="w-btn w-btn-gra1" type="submit">댓글 달기</button>
             </form>
+            
 
         <!-- 댓글 데이터 -->
         <MovieComment v-for = "comment in comments"
@@ -182,11 +182,14 @@ export default {
 .comment {
   color: rgb(153, 78, 153);
   font-family: 'Black Han Sans', sans-serif;
+  margin-top: 50px;
 }
 
 .textarea {
     border-radius: 20px;
     border: 2px solid rgb(153, 78, 153);
+    display: inline;
+    margin: 7px;
 }
 
 .heart {
@@ -216,8 +219,14 @@ export default {
     color: white;
     border-radius: 10px;
     border-color: aliceblue;
+    padding: 10px;
+    /* margin-top: 10px; */
+    display: inline;
 }
 
+.textarea, .w-btn {
+    vertical-align: middle;
+}
 
 
 </style>
