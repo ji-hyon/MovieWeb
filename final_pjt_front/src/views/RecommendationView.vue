@@ -12,9 +12,9 @@
     <br><br>
     <button class="w-btn-neon2" @click="recommendMovie">영화 추천</button>
     <br><br>
-    <p>
+    <div>
       <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />
-    </p>
+    </div>
   </div>
 </template>
 

@@ -19,7 +19,6 @@ export default new Vuex.Store({
     movies: [],
     genres: [],
     token: null,
-    
   },
 
   getters: {
@@ -85,7 +84,8 @@ export default new Vuex.Store({
     },
 
     signUp(context, payload) {
-      const username = payload.username
+      // ####
+      const username = payload.username1
       const password1 = payload.password1
       const password2 = payload.password2
 
@@ -93,13 +93,14 @@ export default new Vuex.Store({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
+          // ###
           username, password1, password2
         }
       })
       .then((res) => {
         // console.log(res)
         // context.commit('SIGN_UP', res.data.key)
-        context.commit('SAVE_TOKEN', {token: res.data.key, username: payload.username})
+        context.commit('SAVE_TOKEN', {token: res.data.key, username: payload.username1})
       })
       .catch((err) => {
       console.log(err)
