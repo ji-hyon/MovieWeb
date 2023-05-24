@@ -1,22 +1,38 @@
 <template>
-  <div id="app">
+<!-- 활성화되지 않았을 때도 색칠해지는 문제 해결 -->
+  <!-- <div id="app">
     <nav>
       <router-link v-bind:to="{name: 'MainView'}" class="nav-link" active-class="active-link">Main</router-link> 
       <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" active-class="active-link">Recommendation</router-link> 
       <template v-if="isNotLogin">
         <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" active-class="active-link">SignIn</router-link> 
-        <!-- <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link" active-class="active-link">SignUp</router-link> -->
       </template>
       <template v-if="isLogin">
         <a v-on:click="signOut" class="nav-link">SignOut</a> 
         <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link">Profile</router-link>
       </template>
-
-      <!-- <router-link v-bind:to="{name: 'GameView'}" class="nav-link" active-class="active-link">Game</router-link>  -->
-    
+      <router-link v-bind:to="{name: 'SearchView'}" class="nav-link" active-class="active-link">Search</router-link> 
     </nav>
       <router-view/>
+  </div> -->
+
+  <div id="app">
+    <nav>
+      <router-link v-bind:to="{name: 'MainView'}" class="nav-link" :class="{ 'active-link': $route.name === 'MainView' }">Main</router-link> 
+      <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" :class="{ 'active-link': $route.name === 'RecommendationView' }">Recommendation</router-link> 
+      <template v-if="isNotLogin">
+        <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SignInView' }">SignIn</router-link> 
+      </template>
+      <template v-if="isLogin">
+        <a v-on:click="signOut" class="nav-link">SignOut</a> 
+        <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link" :class="{ 'active-link': $route.name === 'ProfileView' }">Profile</router-link>
+      </template>
+      <router-link v-bind:to="{name: 'SearchView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SearchView' }">Search</router-link> 
+
+    </nav>
+    <router-view/>
   </div>
+
 </template>
 
 <script>
