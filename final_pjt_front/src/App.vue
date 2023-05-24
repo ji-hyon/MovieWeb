@@ -11,6 +11,9 @@
         <a v-on:click="signOut" class="nav-link">SignOut</a> 
         <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link">Profile</router-link>
       </template>
+
+      <!-- <router-link v-bind:to="{name: 'GameView'}" class="nav-link" active-class="active-link">Game</router-link>  -->
+    
     </nav>
       <router-view/>
   </div>
