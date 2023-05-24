@@ -57,6 +57,8 @@ export default {
 
 @keyframes ani{
    0%{transform:translate(0,0);}
-   100%{transform:translate(0,50px);}
+   50% { transform: translateX(20px)}
+   100%{transform:translate(0,10px);}
 }  
+
 </style>

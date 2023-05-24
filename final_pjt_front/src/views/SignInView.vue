@@ -117,7 +117,9 @@ export default {
 
 <style>
 .signView {
-  margin-top: 80px;
+  /* margin-top: 80px; */
+  margin: 80px;
+  opacity: 0.9;
 }
 
 *,:after,:before{box-sizing:border-box}

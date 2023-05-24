@@ -15,6 +15,7 @@
     <div>
       <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />
     </div>
+
   </div>
 </template>
 
@@ -30,6 +31,8 @@ export default {
     return {
       randomMovie: null,
       selectedGenre: '',
+
+      starAnimationActive: false,
     }
   },
   computed: {
@@ -66,6 +69,7 @@ export default {
       } else {
         this.randomMovie = null;
       }
+
     },
     getMoviesByGenre(genreId) {
       return this.movies.filter(movie => movie.genre_ids.includes(genreId))
@@ -76,7 +80,6 @@ export default {
 </script>
 
 <style scoped>
-
 select {
 width: 150px; 
 padding: 5px;

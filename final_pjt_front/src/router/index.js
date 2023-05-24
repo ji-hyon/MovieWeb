@@ -7,6 +7,8 @@ import SignInView from '@/views/SignInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import DetailView from '@/views/DetailView'
 import ProfileView from '@/views/ProfileView'
+import SearchView from '@/views/SearchView.vue'
+import GameView from '@/views/GameView.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +42,16 @@ const routes = [
     path: '/profile/:username',
     name: 'ProfileView',
     component: ProfileView
+  },
+  {
+    path: '/search',
+    name: 'SearchView',
+    component: SearchView
+  },
+  {
+    path: '/game',
+    name: 'GameView',
+    component: GameView
   },
 
   // {
