@@ -169,7 +169,9 @@ export default {
   margin-top: 50px;
 }
 
-
+.bi {
+  color: orange;
+}
 
 
 

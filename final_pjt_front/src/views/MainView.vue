@@ -8,7 +8,7 @@
         <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
 
-              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 6)" :key="index" :movie="movie" />
+              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 5)" :key="index" :movie="movie" />
 
           </div>
         <div class="swiper-pagination"></div>
@@ -30,7 +30,7 @@ export default {
     MovieList,
   },
 
-  mounted() {
+mounted() {
  new Swiper('.swiper-container', {
   slidesPerView: 'auto',
   initialSlide: 2,
@@ -238,6 +238,10 @@ export default {
   text-decoration: none;
   border-bottom: 3px solid currentColor;
   padding-bottom: 3px;
+}
+
+.bi {
+
 }
 
 </style>
