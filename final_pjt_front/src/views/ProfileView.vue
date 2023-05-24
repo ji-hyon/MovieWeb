@@ -1,15 +1,15 @@
 <template>
   <div>
     <h1 class="name">Hello, {{ username }}</h1>
-    <!-- <h2 class="like">Liked Movies:</h2> -->
     <h2 class="like"><i class="bi-suit-heart-fill"></i>&nbsp; Liked Movies:</h2>
     <div class="image-container"> 
-      <div v-for="movie in likedMovies" :key="movie.id">
+      <router-link v-for="movie in likedMovies" :key="movie.id" :to="'/' + movie.id">
         <img class="img" :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
