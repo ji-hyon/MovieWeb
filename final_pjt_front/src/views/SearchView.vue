@@ -1,19 +1,20 @@
 <template>
-<div>
-  <div class="search">
-    <input class="textarea" v-model="searchQuery" placeholder="영화 제목을 입력하세요" />
-    <button class="w-btn w-btn-gra1" @click="searchMovies">검색</button>
-  </div>
+  <div>
+    <div class="search">
+      <input class="textarea" v-model="searchQuery" placeholder="영화 제목을 입력하세요" />
+      <button class="w-btn w-btn-gra1" @click="searchMovies">검색</button>
+    </div>
 
     <div class="no" v-if="searchResults.length === 0">
       검색 결과가 없습니다.
     </div>
 
-    <div v-else  class="image-container">
+    <div v-else class="image-container">
       <div v-for="movie in searchResults" :key="movie.id" class="movie">
-        <div class="title">{{ movie.title }}</div>
         <div class="poster-container">
-          <img class="img" :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+          <router-link :to="{ name: 'DetailView', params: { id: movie.id } }">
+            <img class="img" :src="getMoviePosterUrl(movie)">
+          </router-link>
         </div>
       </div>
     </div>
@@ -45,8 +46,13 @@ export default {
       // 이 예시에서는 store에 저장된 movies에서 검색을 수행합니다.
       this.searchResults = this.$store.state.movies.filter((movie) =>
         movie.title.includes(this.searchQuery)
-      );
+      )
     },
+
+    getMoviePosterUrl(movie) {
+      return `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    },
+
   },
 
 }

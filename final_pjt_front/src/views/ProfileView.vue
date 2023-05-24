@@ -19,7 +19,16 @@
       <div v-for="comment in getUserComments" :key="comment.id">
         <span class="name">{{ comment.user.username }}</span>
         <span>"{{ comment.content }}"</span>
-        <span>&nbsp;&nbsp;&nbsp; (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})</span>
+
+        <!-- <span>&nbsp;&nbsp;&nbsp; (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})</span> -->
+
+        <span>
+          &nbsp;&nbsp;&nbsp;
+          <router-link :to="{ name: 'DetailView', params: { id: comment.movie }}">
+            (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})
+          </router-link>
+        </span>
+
       </div>
     </div>
 
