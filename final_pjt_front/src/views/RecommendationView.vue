@@ -76,6 +76,7 @@ export default {
 </script>
 
 <style scoped>
+
 select {
 width: 150px; 
 padding: 5px;

@@ -24,7 +24,7 @@ export default {
 
  <template>
   <div>
-    <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" @click="goToDetailMovie" />
+    <img class="img" :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" @click="goToDetailMovie" />
   </div>
 </template>
 
@@ -45,5 +45,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.img {
+  margin-bottom:70px;
+  margin-left: 10px;
+  height: 600px;
+}
 </style>
