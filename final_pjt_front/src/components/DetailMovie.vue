@@ -160,6 +160,9 @@ export default {
 
 .content {
   width: 600px;
+  /* font-family: 'Sunflower', sans-serif; */
+  /* font-family: 'IBM Plex Sans KR', sans-serif; */
+  font-weight:lighter
 }
 
 .details {
