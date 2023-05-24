@@ -19,4 +19,7 @@ urlpatterns = [
 
     path('comments/<int:comment_pk>/update/', views.comment_update, name='comment_update'),
 
+    # profile page에 내가 작성한 댓글을 출력
+    path('movies_comment/', views.movies_comment, name='movies_comment'),
+
 ]

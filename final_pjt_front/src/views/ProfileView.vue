@@ -3,13 +3,19 @@
     <h1 class="name">Hello, {{ username }}</h1>
     <h2 class="like"><i class="bi-suit-heart-fill"></i>&nbsp; Liked Movies:</h2>
     <div class="image-container"> 
-      <router-link v-for="movie in likedMovies" :key="movie.id" :to="'/' + movie.id">
-        <img class="img" :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
-      </router-link>
+      <div v-for="movie in likedMovies" :key="movie.id">
+        <img class="img" :src="getMoviePosterUrl(movie)">
+      </div>
+    </div>
+
+    <h2 class="like">Comments:</h2>
+    <div v-for="comment in getUserComments" :key="comment.id">
+      <p>{{ comment.user.username }}</p>
+      <p>{{ getMovieTitle(comment.movie) }}</p>
+      <p>{{ comment.content }}</p>
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from 'axios'
@@ -21,35 +27,51 @@ export default {
   computed: {
     username() {
       return this.$store.state.username
+    },
+    getUserComments() {
+      return this.comments.filter(comment => comment.user.username === this.username)
     }
   },
   data() {
     return {
-      likedMovies: []
+      likedMovies: [],
+      comments: []
     }
   },
-
+ 
   created() {
     this.getLikedMovies()
+    this.getAllComments()
   },
 
   methods: {
     getLikedMovies() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/users/${this.$store.state.username}/liked_movies/`
-      })
-      .then((res) => {
-        this.likedMovies = res.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      axios.get(`${API_URL}/api/v1/users/${this.username}/liked_movies/`)
+        .then((res) => {
+          this.likedMovies = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
+    getAllComments() {
+      axios.get(`${API_URL}/api/v1/movies_comment/`)
+        .then((res) => {
+          this.comments = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
 
     getMoviePosterUrl(movie) {
-      console.log(movie.poster_path)
-      return `${API_URL}${movie.poster_path}`
+      return `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    },
+
+    getMovieTitle(movieId) {
+      const movie = this.$store.state.movies[movieId-1]
+      return movie ? movie.title : 'Unknown'
     }
   }
 }
