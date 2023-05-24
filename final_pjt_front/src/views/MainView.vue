@@ -8,10 +8,12 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
-              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 5)" :key="index" :movie="movie" />
+              <!-- <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 5)" :key="index" :movie="movie" /> -->
+              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id, 5)" :key="index" :movie="movie" />
 
           </div>
-        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-pagination"></div> -->
+        <swiper-pagination class="swiper-pagination"></swiper-pagination>
         </div>
       </div>
   </div>
@@ -30,21 +32,27 @@ export default {
     MovieList,
   },
 
-mounted() {
- new Swiper('.swiper-container', {
-  slidesPerView: 'auto',
-  initialSlide: 2,
-  speed: 1000,
-  spaceBetween: 32,
-  loop: true,
-  centeredSlides: true,
-  roundLengths: true,
-  mousewheel: true,
-  grabCursor: true,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true } });
-  },
+  mounted() {
+  new Swiper('.swiper-container', {
+    slidesPerView: 'auto',
+    initialSlide: 2,
+    speed: 1000,
+    spaceBetween: 32,
+    loop: true,
+    centeredSlides: true,
+    roundLengths: true,
+    mousewheel: true,
+    grabCursor: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    autoplay: {
+      delay: 2500, // 3초마다 슬라이드 전환
+      disableOnInteraction: false // 사용자 상호작용 후에도 자동재생 유지
+    }
+  });
+},
 
   created() {
     this.getMovies()
@@ -67,8 +75,28 @@ mounted() {
     getGenres() {
       this.$store.dispatch('getGenres')
     },
-    getMoviesByGenre(genreId) {
-      return this.movies.filter(movie => movie.genre_ids.includes(genreId))
+    // getMoviesByGenre(genreId) {
+    //   return this.movies.filter(movie => movie.genre_ids.includes(genreId))
+    // },
+    getMoviesByGenre(genreId, count) {
+      const moviesByGenre = this.movies.filter(movie => movie.genre_ids.includes(genreId));
+      const randomMovies = [];
+      const totalMovies = moviesByGenre.length;
+
+      if (count >= totalMovies) {
+        return moviesByGenre; // 장르에 속한 모든 영화를 반환
+      }
+
+      while (randomMovies.length < count) {
+        const randomIndex = Math.floor(Math.random() * totalMovies);
+        const randomMovie = moviesByGenre[randomIndex];
+
+        if (!randomMovies.includes(randomMovie)) {
+          randomMovies.push(randomMovie);
+        }
+      }
+
+      return randomMovies;
     },
 
     chunkedMoviesByGenre(genreId, size) {
@@ -134,7 +162,7 @@ mounted() {
 }
 @media (min-width: 630px) {
   .swiper-wrapper {
-    width: 100%;
+    /* width: 100%; */
   }
 }
 
