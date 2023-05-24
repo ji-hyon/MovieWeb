@@ -5,8 +5,8 @@
       <br>
       <hr class="divider">
       <h2 class="genre">{{ genre.name }}</h2>
-        <div class="swiper-container"> 
-          <div class="swiper-wrapper"> 
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
 
               <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 6)" :key="index" :movie="movie" />
 
