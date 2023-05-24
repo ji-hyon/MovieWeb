@@ -54,7 +54,6 @@ export default {
         filteredMovies = this.getMoviesByGenre(this.selectedGenre);
       }
 
-      // 필터링된 영화 중 평점이 8점 이상인 영화들로 필터링
       const highRatedMovies = filteredMovies.filter(movie => movie.vote_average >= 8);
 
       if (highRatedMovies.length > 0) {
