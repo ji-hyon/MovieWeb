@@ -91,6 +91,7 @@ mounted() {
 </script>
 
 <style scoped>
+
 *, ::after, ::before {
   box-sizing: unset;
 }

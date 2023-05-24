@@ -5,7 +5,7 @@
       <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" active-class="active-link">Recommendation</router-link> 
       <template v-if="isNotLogin">
         <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" active-class="active-link">SignIn</router-link> 
-        <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link" active-class="active-link">SignUp</router-link>
+        <!-- <router-link v-bind:to="{name: 'SignUpView'}" class="nav-link" active-class="active-link">SignUp</router-link> -->
       </template>
       <template v-if="isLogin">
         <a v-on:click="signOut" class="nav-link">SignOut</a> 
@@ -47,7 +47,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   font-family: 'IBM Plex Sans KR', sans-serif;
-  width: 100%;
+  width: 80%;
 }
 
 nav {
