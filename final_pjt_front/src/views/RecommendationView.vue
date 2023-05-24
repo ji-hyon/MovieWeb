@@ -1,10 +1,14 @@
 <template>
   <div>
     <br>
+
+    <i class="bi-check2-square"></i>
+    <span class="select-word"> 장르를 선택해주세요  :  </span>
     <select v-model="selectedGenre">
       <option value="">전체</option>
       <option v-for="genre in genres" :value="genre.id" :key="genre.id">{{ genre.name }}</option>
     </select>
+
     <br><br>
     <button class="w-btn-neon2" @click="recommendMovie">영화 추천</button>
     <br><br>
@@ -66,11 +70,36 @@ export default {
     getMoviesByGenre(genreId) {
       return this.movies.filter(movie => movie.genre_ids.includes(genreId))
     },
+
   }
 }
 </script>
 
-<style>
+<style scoped>
+select {
+width: 150px; 
+padding: 5px;
+border: 2px solid #bc8fec;
+font-family: inherit;  
+/* background: url('arrow.jpg') no-repeat 95% 50%;  */
+border-radius: 10px; 
+-webkit-appearance: none; 
+-moz-appearance: none;
+appearance: none;
+color: #9c70ca;
+text-align: center;
+}
+
+.bi-check2-square{
+  color: #5f12a8;
+}
+
+.select-word {
+  color: #a35fec;
+  /* font-weight:bolder */
+  font-weight:500
+}
+
 .w-btn-neon2 {
     position: relative;
     border: none;
@@ -140,6 +169,73 @@ export default {
     100% {
         background-position: 0% 50%;
     }
+}
+
+
+/* ######################## */
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+/* design */
+
+.selectbox{
+    margin: 150px auto;
+}
+
+.pl{
+width: 200px;
+border: 1px solid #C4C4C4;
+box-sizing: border-box;
+border-radius: 10px;
+padding: 12px 13px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+appearance: none;
+text-align: left;
+}
+.pl:focus{
+    border: 1px solid #9B51E0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid #F8E4FF;
+    border-radius: 10px;
+}
+
+.listbox{
+    width: 200px;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-top: 9px;
+}
+
+.list{
+    border: none;
+    background-color: #FFFFFF;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 7px 10px;
+    margin: 5px 7px;
+    box-sizing: border-box;
+}
+
+.list:focus{
+    background: #F8E4FF;
+    width: 184px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 </style>
