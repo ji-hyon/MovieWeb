@@ -10,12 +10,27 @@
           <p class="movie-rating"><i class="bi bi-star-fill"></i> {{ movie.vote_average }}</p>
       </div>
 
-      <div v-if="trailerVideoId" class="trailer-video">
+      <!-- <div v-if="trailerVideoId" class="trailer-video">
         <iframe :src="'https://www.youtube.com/embed/' + trailerVideoId" width="560" height="315" frameborder="0" allowfullscreen></iframe>
       </div>
       <div v-else class="no-trailer">
         <p>No trailer available</p>
-      </div>
+      </div> -->
+      <!-- <div>{{ getYouTubeVideo(movie.title) }}</div> -->
+
+      <div v-if="youtubeVideo" class="trailer-video">
+          <iframe
+            :src="'https://www.youtube.com/embed/' + youtubeVideo.videoId"
+            width="560"
+            height="315"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div v-else class="no-trailer">
+          <p>No trailer available</p>
+        </div>
+
     </div>
 
     <div >
@@ -30,6 +45,7 @@
 
 <script>
 import axios from 'axios'
+// YouTube_API = 'AIzaSyAlkWyxL_-iqIK9iHwO7MF8ibGl2RLa2HU'
 
 export default {
     name : 'DetailMovie',
@@ -38,39 +54,66 @@ export default {
     },
     data() {
       return {
-        trailerVideoId: null
+        trailerVideoId: null,
+        youtubeVideo: null,
       };
     },
 
+    mounted() {
+      this.getYouTubeVideo(this.movie.title)
+    },  
 
-  async mounted() {
-    const trailerVideoId = await this.getTrailerVideoId(this.movie.id);
-    this.trailerVideoId = trailerVideoId;
-  },
+  // async mounted() {
+  //   const trailerVideoId = await this.getTrailerVideoId(this.movie.id);
+  //   this.trailerVideoId = trailerVideoId;
+  // },
   methods: {
-    async getTrailerVideoId(movieId) {
-      const TMDB_API_KEY = '7708a3b7010d3093206943ce95914382';
-      const YOUTUBE_API_KEY = 'AIzaSyCVAuzc4qA4AVqdWLDzd66P694V5T2nI_M';
-      
-      const tmdbResponse = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
-      );
-      const movie = tmdbResponse.data;
+    async getYouTubeVideo(title) {
+      try {
+        const response = await axios.get(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+            title + ' trailer'
+          )}&key=AIzaSyAlkWyxL_-iqIK9iHwO7MF8ibGl2RLa2HU`
+        );
 
-      const keyword = `${movie.title} 예고편`;
-      const youtubeResponse = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(keyword)}&key=${YOUTUBE_API_KEY}`
-      );
-
-      const videos = youtubeResponse.data.items;
-      const trailer = videos.find(video => video.id.kind === 'youtube#video');
-
-      if (trailer) {
-        return trailer.id.videoId;
-      } else {
-        return null;
+        const video = response.data.items[0];
+        if (video) {
+          const videoId = video.id.videoId;
+          this.youtubeVideo = { videoId };
+        }
+      } catch (error) {
+        console.error('Failed to fetch YouTube video:', error);
       }
-    }
+    },
+
+
+    // async getTrailerVideoId(movieId) {
+    //   const TMDB_API_KEY = '7708a3b7010d3093206943ce95914382';
+    //   const YOUTUBE_API_KEY = 'AIzaSyCVAuzc4qA4AVqdWLDzd66P694V5T2nI_M';
+      
+    //   const tmdbResponse = await axios.get(
+    //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
+    //   );
+    //   const movie = tmdbResponse.data;
+
+    //   const keyword = `${movie.title} 예고편`;
+    //   const youtubeResponse = await axios.get(
+    //     `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(keyword)}&key=${YOUTUBE_API_KEY}`
+    //   );
+
+    //   const videos = youtubeResponse.data.items;
+    //   const trailer = videos.find(video => video.id.kind === 'youtube#video');
+
+    //   if (trailer) {
+    //     return trailer.id.videoId;
+    //   } else {
+    //     return null;
+    //   }
+    // }
+
+
+
+
   }
 
   // ###################################################
