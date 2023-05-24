@@ -16,7 +16,6 @@
     </div>
 
 
-
   </div>
 </template>
 
@@ -88,7 +87,7 @@ export default {
     background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
     color: white;
     border-radius: 7px;
-    border-color: aliceblue;
+    border-color: rgb(196, 104, 196);;
     padding: 4px;
     margin: 2px;
     /* margin-top: 10px; */
