@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div v-if="!isEditing">
-      {{ comment.user.username }}
-      {{ editedComment.content }}
-      {{ editedComment.created_at }}
+
+    <div v-if="!isEditing"> 
+      <span class="name">{{ comment.user.username }}</span>
+      "{{ editedComment.content }}"
+      &nbsp;
+      [{{ editedComment.created_at.slice(0, 19) }}]
       <button class="w-btn-gra1" @click="deleteComment(editedComment.id)" v-show="btn_check">삭제</button>
       <button class="w-btn-gra1" @click="editComment" v-show="btn_check">수정</button>
     </div>
@@ -12,6 +14,9 @@
       <button class="w-btn-gra1" @click="saveComment">저장</button>
       <button class="w-btn-gra1" @click="cancelEdit">취소</button>
     </div>
+
+
+
   </div>
 </template>
 
@@ -88,5 +93,9 @@ export default {
     margin: 2px;
     /* margin-top: 10px; */
     display: inline;
+}
+.name {
+  font-weight: bold;
+  color: purple;
 }
 </style>

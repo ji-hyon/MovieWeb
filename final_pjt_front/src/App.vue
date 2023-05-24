@@ -12,7 +12,7 @@
         <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link">Profile</router-link>
       </template>
     </nav>
-    <router-view/>
+      <router-view/>
   </div>
 </template>
 
@@ -37,15 +37,22 @@ export default {
 </script>
 
 <style>
+.router-view {
+  width: 100%;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   font-family: 'IBM Plex Sans KR', sans-serif;
+  width: 100%;
 }
 
 nav {
+  display: block;
+  width: 100%;
   padding: 30px;
   background-image: url(./assets/pastel.png); 
   background-repeat: no-repeat;

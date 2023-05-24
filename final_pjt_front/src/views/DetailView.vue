@@ -185,7 +185,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .comment {
   color: rgb(153, 78, 153);
   font-family: 'Black Han Sans', sans-serif;
