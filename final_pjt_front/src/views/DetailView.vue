@@ -13,7 +13,7 @@
 
     <!-- 댓글 입력 창 -->
     <div class="cmt">
-        <h2 class="comment">댓글</h2>
+        <h2 class="comment"><i class="bi-chat-right-text-fill"></i> 댓글</h2>
             <form class="inner" @submit.prevent="addComment" v-if="$store.state.token">
                 <textarea class="textarea" v-model="newCommentText" placeholder="" style="width: 50%;"></textarea>
                 <button class="w-btn w-btn-gra1" type="submit">댓글 달기</button>
@@ -194,7 +194,7 @@ export default {
 
 .textarea {
     border-radius: 20px;
-    border: 2px solid rgb(153, 78, 153);
+    border: 2px solid rgb(196, 104, 196);
     display: inline;
     margin: 7px;
 }
@@ -218,14 +218,15 @@ export default {
 .like-letter{
     margin-top: 13px;
     font-weight: bold; 
-    color: purple;
+    color: rgb(153, 78, 153);
 }
 
 .w-btn-gra1 {
     background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
     color: white;
     border-radius: 10px;
-    border-color: aliceblue;
+    /* border-color: aliceblue; */
+    border-color: rgb(196, 104, 196);
     padding: 10px;
     /* margin-top: 10px; */
     display: inline;

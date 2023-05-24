@@ -79,6 +79,10 @@ export default {
 </script>
 
 <style>
+.movie-rating {
+   color: rgb(153, 78, 153);
+}
+
 .title {
   padding: 20px;
   color: rgb(153, 78, 153);
