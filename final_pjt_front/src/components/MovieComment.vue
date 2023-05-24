@@ -4,13 +4,13 @@
       {{ comment.user.username }}
       {{ editedComment.content }}
       {{ editedComment.created_at }}
-      <button @click="deleteComment(editedComment.id)" v-show="btn_check">삭제</button>
-      <button @click="editComment" v-show="btn_check">수정</button>
+      <button class="w-btn-gra1" @click="deleteComment(editedComment.id)" v-show="btn_check">삭제</button>
+      <button class="w-btn-gra1" @click="editComment" v-show="btn_check">수정</button>
     </div>
     <div v-else>
       <textarea v-model="editedComment.content" placeholder="댓글을 입력하세요"></textarea>
-      <button @click="saveComment">저장</button>
-      <button @click="cancelEdit">취소</button>
+      <button class="w-btn-gra1" @click="saveComment">저장</button>
+      <button class="w-btn-gra1" @click="cancelEdit">취소</button>
     </div>
   </div>
 </template>
@@ -78,5 +78,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.w-btn-gra1 {
+    background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+    color: white;
+    border-radius: 7px;
+    border-color: aliceblue;
+    padding: 4px;
+    margin: 2px;
+    /* margin-top: 10px; */
+    display: inline;
+}
 </style>
