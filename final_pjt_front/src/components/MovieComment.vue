@@ -84,6 +84,10 @@ export default {
 </script>
 
 <style scoped>
+.bi-person-fill {
+  color: purple;
+}
+
 .w-btn-gra1 {
     background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
     color: white;
