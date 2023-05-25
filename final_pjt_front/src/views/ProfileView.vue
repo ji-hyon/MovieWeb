@@ -106,7 +106,7 @@ export default {
   margin: 10px;
   /* font-weight: bold; */
   /* color: rgb(153, 78, 153); */
-  color: rgb(212, 108, 212);
+  color: rgb(214, 69, 214);
 }
 
 .comment-content {
