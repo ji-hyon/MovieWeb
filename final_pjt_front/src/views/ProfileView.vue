@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="profileView">
 
     <h1 class="name">Hello, {{ username }}</h1>
 
@@ -99,11 +99,14 @@ export default {
 </script>
 
 <style scoped>
+.profileView {
+  box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
+}
 .comment {
   margin: 10px;
   /* font-weight: bold; */
   /* color: rgb(153, 78, 153); */
-  color: rgb(153, 78, 153);
+  color: rgb(212, 108, 212);
 }
 
 .comment-content {

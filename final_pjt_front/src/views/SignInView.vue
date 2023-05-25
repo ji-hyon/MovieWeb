@@ -120,6 +120,7 @@ export default {
   /* margin-top: 80px; */
   margin: 80px;
   opacity: 0.9;
+  box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }
 
 *,:after,:before{box-sizing:border-box}

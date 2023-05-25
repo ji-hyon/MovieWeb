@@ -3,7 +3,13 @@
     <div v-for="genre in genres" :key="genre.pk">
       <br>
       <hr class="divider">
-      <h2 class="genre">{{ genre.name }}</h2>
+
+      <div class="genre-wrapper">
+        <!-- 푸린이 이미지 -->
+        <!-- <img class="img" src= "../assets/char.webp" alt=""> -->
+        <h2 class="genre">{{ genre.name }}</h2>
+      </div>
+
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <MovieList v-for="(movie, index) in genre.movies" :key="index" :movie="movie" />
@@ -97,6 +103,16 @@ export default {
 
 
 <style scoped>
+.genre-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  margin-bottom: 20px;
+  height: 50px;
+}
 
 *, ::after, ::before {
   box-sizing: unset;

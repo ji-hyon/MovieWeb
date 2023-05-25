@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="RecView">
     <br>
 
     <i class="bi-check2-square"></i>
@@ -80,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.RecView{
+  box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
+}
+
 select {
 width: 150px; 
 padding: 5px;
