@@ -2,10 +2,10 @@
   <div>
 
     <div v-if="!isEditing"> 
-      <span class="name">{{ comment.user.username }}</span>
-      "{{ editedComment.content }}"
+      <span class="name">{{ comment.user.username }}&nbsp;</span>
+      <span class="comment"> "{{ editedComment.content }}"</span>
       &nbsp;
-      [{{ editedComment.created_at.slice(0, 19) }}]
+      <span class="date"> [{{ editedComment.created_at.slice(0, 19) }}]&nbsp;&nbsp;</span>
       <button class="w-btn-gra1" @click="deleteComment(editedComment.id)" v-show="btn_check">삭제</button>
       <button class="w-btn-gra1" @click="editComment" v-show="btn_check">수정</button>
     </div>
@@ -96,5 +96,14 @@ export default {
 .name {
   font-weight: bold;
   color: purple;
+}
+
+.comment {
+  font-weight: 550;
+  color: rgb(143, 64, 143)
+}
+
+.date {
+  color: rgb(143, 64, 143)
 }
 </style>

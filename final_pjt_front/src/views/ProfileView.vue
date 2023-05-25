@@ -13,21 +13,24 @@
         </router-link>
       </div>
     </div>
-
-    <div class="comment">
-      <h2 class="like"><i class="bi-chat-right-text-fill"></i> Comments:</h2>
+    
+    <div class="comment-area">
+      <h2 class="like"><i class="bi-chat-right-text-fill"></i>&nbsp; Comments:</h2>
       <div v-for="comment in getUserComments" :key="comment.id">
-        <span class="name">{{ comment.user.username }}</span>
-        <span>"{{ comment.content }}"</span>
 
-        <!-- <span>&nbsp;&nbsp;&nbsp; (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})</span> -->
+        <div class="comment">
+          <!-- <span class="name">{{ comment.user.username }}</span> -->
+          <span class="comment-content">"{{ comment.content }}"</span>
 
-        <span>
-          &nbsp;&nbsp;&nbsp;
-          <router-link :to="{ name: 'DetailView', params: { id: comment.movie }}">
-            (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})
-          </router-link>
-        </span>
+          <!-- <span>&nbsp;&nbsp;&nbsp; (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})</span> -->
+
+          <span class="movie-link">
+            &nbsp;&nbsp;&nbsp;
+            <router-link :to="{ name: 'DetailView', params: { id: comment.movie }}">
+              [<i class="bi-film"></i>&nbsp;{{ getMovieTitle(comment.movie) }}]
+            </router-link>
+          </span>
+        </div>
 
       </div>
     </div>
@@ -96,6 +99,22 @@ export default {
 </script>
 
 <style scoped>
+.comment {
+  margin: 10px;
+  /* font-weight: bold; */
+  /* color: rgb(153, 78, 153); */
+  color: rgb(153, 78, 153);
+}
+
+.comment-content {
+  font-weight: bold;
+  /* color: rgb(167, 57, 167); */
+}
+
+.movie-link {
+  /* color: rgb(105, 32, 173); */
+}
+
 .name {
   color: rgb(153, 78, 153);
   font-family: 'Black Han Sans', sans-serif;
@@ -129,7 +148,7 @@ export default {
   justify-content: center;
 }
 
-.comment {
+.comment-area {
   padding: 30px;
   margin-bottom: 50px;
 }
