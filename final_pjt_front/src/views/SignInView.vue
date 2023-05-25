@@ -31,7 +31,7 @@
             <label for="check"><span class="icon"></span> Keep me Signed in</label>
           </div>
           <div class="group">
-            <input type="submit" class="button" value="Sign In" @click="signIn">
+            <input type="submit" class="button test" value="Sign In" @click="signIn">
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
@@ -55,7 +55,7 @@
             <input id="password2" type="password" class="input" data-type="password" v-model="password2">
           </div>
           <div class="group">
-            <input type="submit" class="button" value="Sign Up" @click="signUp">
+            <input type="submit" class="button test" value="Sign Up" @click="signUp">
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
@@ -115,7 +115,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .signView {
   /* margin-top: 80px; */
   margin: 80px;
@@ -177,7 +177,7 @@ a{color:inherit;text-decoration:none}
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
   color:#fff;
-  border-color:#1161ee;
+  border-color:purple;;
 }
 .login-form{
   min-height:345px;
@@ -211,7 +211,8 @@ a{color:inherit;text-decoration:none}
   font-size:12px;
 }
 .login-form .group .button{
-  background:#1161ee;
+  /* background:#1161ee; */
+  background:purple;
 }
 .login-form .group label .icon{
   width:15px;
@@ -245,7 +246,7 @@ a{color:inherit;text-decoration:none}
   color:#fff;
 }
 .login-form .group .check:checked + label .icon{
-  background:#1161ee;
+  background:purple;;
 }
 .login-form .group .check:checked + label .icon:before{
   transform:scale(1) rotate(45deg);

@@ -7,7 +7,7 @@
     <div class="movies">
       <div class="image-container"> 
         <!-- <div v-for="movie in likedMovies" :key="movie.id"> -->
-        <router-link v-for="movie in likedMovies" :key="movie.id" :to="'/' + movie.id">
+        <router-link class="link" v-for="movie in likedMovies" :key="movie.id" :to="'/' + movie.id">
           <img class="img" :src="getMoviePosterUrl(movie)">
         <!-- </div> -->
         </router-link>
@@ -114,10 +114,6 @@ export default {
 .comment-content {
   font-weight: bold;
   /* color: rgb(145, 41, 145); */
-}
-
-.movie-link {
-  /* color: rgb(105, 32, 173); */
 }
 
 .name {
