@@ -19,19 +19,15 @@
       <div v-for="comment in getUserComments" :key="comment.id">
 
         <div class="comment">
-          <!-- <span class="name">{{ comment.user.username }}</span> -->
-          <span class="comment-content">"{{ comment.content }}"</span>
-
-          <!-- <span>&nbsp;&nbsp;&nbsp; (<i class="bi-film"></i> {{ getMovieTitle(comment.movie) }})</span> -->
-
           <span class="movie-link">
-            &nbsp;&nbsp;&nbsp;
             <router-link :to="{ name: 'DetailView', params: { id: comment.movie }}">
-              [<i class="bi-film"></i>&nbsp;{{ getMovieTitle(comment.movie) }}]
+              <img class="poster-img" :src="getMoviePosterImg(comment.movie)" :alt="getMovieTitle(comment.movie)">
+              {{ getMovieTitle(comment.movie) }}
             </router-link>
           </span>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span class="comment-content">"{{ comment.content }}"</span>
         </div>
-
       </div>
     </div>
 
@@ -87,6 +83,11 @@ export default {
     },
 
     getMoviePosterUrl(movie) {
+      return `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    },
+
+    getMoviePosterImg(movieId) {
+      const movie = this.$store.state.movies[movieId-1]
       return `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     },
 
@@ -154,5 +155,9 @@ export default {
 .comment-area {
   padding: 30px;
   margin-bottom: 50px;
+}
+
+.poster-img {
+  width: 30px;
 }
 </style>
