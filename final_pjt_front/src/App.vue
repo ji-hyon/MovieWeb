@@ -72,6 +72,7 @@ export default {
   font-family: 'IBM Plex Sans KR', sans-serif;
   color: purple;
   margin-left: 10px;
+  font-weight: bold;
 }
 
 .nav-left {
