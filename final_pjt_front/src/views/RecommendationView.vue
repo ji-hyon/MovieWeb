@@ -10,7 +10,7 @@
     </select>
 
     <br><br>
-    <button class="w-btn-neon2" @click="recommendMovie">영화 추천</button>
+    <button class="w-btn-neon2" @click="recommendMovie(); playMusic();">영화 추천</button>
     <br><br>
     <div>
       <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />

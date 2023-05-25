@@ -78,9 +78,10 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .movie-rating {
    color: rgb(153, 78, 153);
+   font-weight: bold;
 }
 
 .title {
@@ -100,10 +101,12 @@ export default {
 
 .trailer-video {
   align-self: flex-end;
+  margin-bottom: 100px;
 }
 
 .img {
   margin-left: 70px;
+  padding-top: 40px;
 }
 
 .content {

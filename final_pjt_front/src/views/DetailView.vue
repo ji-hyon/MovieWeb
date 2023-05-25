@@ -19,7 +19,9 @@
     <div class="cmt">
         <h2 class="comment"><i class="bi-chat-right-text-fill"></i> 댓글</h2>
             <form class="inner" @submit.prevent="addComment" v-if="$store.state.token">
-                <textarea class="textarea" v-model="newCommentText" placeholder="" style="width: 50%;"></textarea>
+
+                <textarea class="textarea" v-model="newCommentText" placeholder="" style="width: 50%;" @keyup.enter="addComment"></textarea>
+
                 <button class="w-btn w-btn-gra1" type="submit">댓글 달기</button>
             </form>
             
@@ -199,12 +201,15 @@ export default {
 }
 
 .textarea {
-    border-radius: 20px;
     border: 2px solid rgb(196, 104, 196);
+    color: purple;
+    border-radius: 10px;
     display: inline;
     margin: 7px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 1px;
 }
-
 .heart {
     color: rgb(202, 34, 202);
     font-size: 30px;

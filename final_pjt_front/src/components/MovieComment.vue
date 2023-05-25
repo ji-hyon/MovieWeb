@@ -2,7 +2,8 @@
   <div>
 
     <div v-if="!isEditing"> 
-      <span class="name">{{ comment.user.username }}&nbsp;</span>
+      <span><i class="bi-person-fill"></i></span>
+      <span class="name">&nbsp;{{ comment.user.username }}&nbsp;</span>
       <span class="comment"> "{{ editedComment.content }}"</span>
       &nbsp;
       <span class="date"> [{{ editedComment.created_at.slice(0, 19) }}]&nbsp;&nbsp;</span>
