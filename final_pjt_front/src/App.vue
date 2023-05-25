@@ -18,17 +18,29 @@
 
   <div id="app">
     <nav>
-      <router-link v-bind:to="{name: 'MainView'}" class="nav-link" :class="{ 'active-link': $route.name === 'MainView' }">Main</router-link> 
-      <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" :class="{ 'active-link': $route.name === 'RecommendationView' }">Recommendation</router-link> 
-      <template v-if="isNotLogin">
-        <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SignInView' }">SignIn</router-link> 
-      </template>
-      <template v-if="isLogin">
-        <a v-on:click="signOut" class="nav-link">SignOut</a> 
-        <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link" :class="{ 'active-link': $route.name === 'ProfileView' }">Profile</router-link>
-      </template>
-      <router-link v-bind:to="{name: 'SearchView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SearchView' }">Search</router-link> 
+    <div class="d-flex justify-content-between">
+      <div class="nav-left">
+        <!-- <img class="icon" src= "./assets/icon.png" alt=""> -->
+        <!-- <img class="icon" src= "./assets/char.webp" alt=""> -->
+        <div>
+          <p class="letter mb-0">Purple Cinema</p>
+        <img class="icon" src= "./assets/penguin.png" alt="">
+      </div>
+      </div>
 
+      <div class="nav-right">
+        <router-link v-bind:to="{name: 'MainView'}" class="nav-link" :class="{ 'active-link': $route.name === 'MainView' }">Main</router-link> 
+        <router-link v-bind:to="{name: 'RecommendationView'}" class="nav-link" :class="{ 'active-link': $route.name === 'RecommendationView' }">Recommendation</router-link> 
+        <template v-if="isNotLogin">
+          <router-link v-bind:to="{name: 'SignInView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SignInView' }">SignIn</router-link> 
+        </template>
+        <template v-if="isLogin">
+          <a v-on:click="signOut" class="nav-link">SignOut</a> 
+          <router-link v-bind:to="{name: 'ProfileView', params:{username: this.$store.state.username}}" class="nav-link" :class="{ 'active-link': $route.name === 'ProfileView' }">Profile</router-link>
+        </template>
+        <router-link v-bind:to="{name: 'SearchView'}" class="nav-link" :class="{ 'active-link': $route.name === 'SearchView' }">Search</router-link> 
+      </div>
+    </div>
     </nav>
     <router-view/>
   </div>
@@ -56,6 +68,26 @@ export default {
 </script>
 
 <style>
+.letter {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  color: purple;
+  margin-left: 10px;
+}
+
+.nav-left {
+  padding-top: 30px;
+  /* margin: 0 auto; */
+}
+
+
+.nav-right {
+  margin-top: 40px;
+}
+
+.icon {
+  width: 50px
+}
+
 .router-view {
   width: 100%;
 }
@@ -72,7 +104,7 @@ export default {
 nav {
   display: block;
   width: 100%;
-  padding: 30px;
+  /* padding: 30px; */
   background-image: url(./assets/pastel.png); 
   background-repeat: no-repeat;
   background-size: cover;
