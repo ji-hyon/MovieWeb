@@ -9,6 +9,7 @@ import DetailView from '@/views/DetailView'
 import ProfileView from '@/views/ProfileView'
 import SearchView from '@/views/SearchView.vue'
 import GameView from '@/views/GameView.vue'
+import ActorDetailView from '@/views/ActorDetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/game',
     name: 'GameView',
     component: GameView
+  },
+  {
+    path: '/actor/:id',
+    name: 'ActorDetailView',
+    component: ActorDetailView
   },
 
   // {

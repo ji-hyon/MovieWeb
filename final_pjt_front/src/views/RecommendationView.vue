@@ -10,7 +10,7 @@
     </select>
 
     <br><br>
-    <button class="w-btn-neon2" @click="recommendMovie(); playMusic();">영화 추천</button>
+    <button class="w-btn-neon2" @click="[recommendMovie(), playMusic()]">영화 추천</button>
     <br><br>
     <div>
       <RecommendedMovie v-if="randomMovie" :movie="randomMovie" />
@@ -69,10 +69,14 @@ export default {
       } else {
         this.randomMovie = null;
       }
-
     },
     getMoviesByGenre(genreId) {
       return this.movies.filter(movie => movie.genre_ids.includes(genreId))
+    },
+
+    playMusic() {
+      const audio = new Audio("https://assets.codepen.io/271665/jigglypuff-song.mp3");
+      audio.play();
     },
 
   }

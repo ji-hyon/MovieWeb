@@ -3,10 +3,11 @@
     <h2 class="actor"><i class="bi-person-square"></i>&nbsp; Actors</h2>
     <div v-if="error">{{ error }}</div>
     <div class="actors" v-else>
-        <span v-for="actor in actors.slice(0, 5)" :key="actor.id">
+        <!-- <span v-for="actor in actors.slice(0, 5)" :key="actor.id"> -->
+        <router-link v-for="actor in actors.slice(0, 5)" :to="`/actor/${actor.id}`" :key="actor.id">
           <img class="img" :src="getActorProfilePath(actor.profile_path)" :alt="actor.name" />
           <p>{{ actor.name }}</p>
-        </span>
+        </router-link>
     </div>
   </div>
 </template>
