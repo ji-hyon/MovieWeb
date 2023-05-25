@@ -60,8 +60,8 @@ export default {
       if (this.selectedGenre) {
         filteredMovies = this.getMoviesByGenre(this.selectedGenre);
       }
-
-      const highRatedMovies = filteredMovies.filter(movie => movie.vote_average >= 8);
+      let sum = filteredMovies.reduce((sum, movie) => sum + movie.vote_average, 0)
+      const highRatedMovies = filteredMovies.filter(movie => movie.vote_average >= (sum / filteredMovies.length));
 
       if (highRatedMovies.length > 0) {
         const randomIndex = Math.floor(Math.random() * highRatedMovies.length);
