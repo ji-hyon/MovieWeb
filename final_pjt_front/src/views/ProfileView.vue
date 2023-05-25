@@ -24,9 +24,9 @@
               <img class="poster-img" :src="getMoviePosterImg(comment.movie)" :alt="getMovieTitle(comment.movie)">
               {{ getMovieTitle(comment.movie) }}
             </router-link>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="comment-content">"{{ comment.content }}"</span>
           </span>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <span class="comment-content">"{{ comment.content }}"</span>
         </div>
       </div>
     </div>
@@ -104,15 +104,16 @@ export default {
   box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }
 .comment {
-  margin: 10px;
-  /* font-weight: bold; */
-  /* color: rgb(153, 78, 153); */
-  color: rgb(214, 69, 214);
+  display: flex;
+  margin: 20px;
+  margin-left: 80px;
+  color: rgb(153, 78, 153);
+  font-size: 17px;
 }
 
 .comment-content {
   font-weight: bold;
-  /* color: rgb(167, 57, 167); */
+  /* color: rgb(145, 41, 145); */
 }
 
 .movie-link {
