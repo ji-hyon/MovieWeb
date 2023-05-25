@@ -95,6 +95,7 @@ export default {
   justify-content: center;
   align-items: flex-start;
   margin-top: 20px;
+  box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }
 
 .trailer-video {
@@ -109,7 +110,8 @@ export default {
   width: 600px;
   /* font-family: 'Sunflower', sans-serif; */
   /* font-family: 'IBM Plex Sans KR', sans-serif; */
-  font-weight:lighter
+  font-weight:lighter;
+  padding: 30px;
 }
 
 .details {

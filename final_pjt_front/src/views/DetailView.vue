@@ -9,8 +9,12 @@
       </div>
 
     <!-- 하위 컴포넌트 -->
+    <!-- 제목, 줄거리, 이미지 -->
     <DetailMovie :movie=movies[movieId-1] />
-
+    <!-- 배우정보 -->
+    <br>
+    <ActorsData :movie=movies[movieId-1] />
+     
     <!-- 댓글 입력 창 -->
     <div class="cmt">
         <h2 class="comment"><i class="bi-chat-right-text-fill"></i> 댓글</h2>
@@ -35,6 +39,7 @@
 import axios from 'axios'
 import DetailMovie from '@/components/DetailMovie.vue'
 import MovieComment from '@/components/MovieComment.vue'
+import ActorsData from '@/components/ActorsData.vue'
 
 // import SignInView from '@/views/SignInView.vue'
 
@@ -45,6 +50,7 @@ export default {
     components: {
         DetailMovie,
         MovieComment,
+        ActorsData,
     },
     created() {
         this.getMovieDetail()
