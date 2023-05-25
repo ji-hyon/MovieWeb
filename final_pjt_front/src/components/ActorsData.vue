@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .actorView {
   box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }
