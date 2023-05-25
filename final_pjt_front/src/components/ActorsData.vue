@@ -4,7 +4,7 @@
     <div v-if="error">{{ error }}</div>
     <div class="actors" v-else>
         <!-- <span v-for="actor in actors.slice(0, 5)" :key="actor.id"> -->
-        <router-link v-for="actor in actors.slice(0, 5)" :to="`/actor/${actor.id}`" :key="actor.id">
+        <router-link class="link" v-for="actor in actors.slice(0, 5)" :to="`/actor/${actor.id}`" :key="actor.id">
           <img class="img" :src="getActorProfilePath(actor.profile_path)" :alt="actor.name" />
           <p>{{ actor.name }}</p>
         </router-link>
@@ -56,6 +56,11 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  color: rgb(110, 16, 197);
+  text-decoration-line: none;
+}
+
 .actorView {
   box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }

@@ -20,7 +20,7 @@
 
         <div class="comment">
           <span class="movie-link">
-            <router-link :to="{ name: 'DetailView', params: { id: comment.movie }}">
+            <router-link class="link" :to="{ name: 'DetailView', params: { id: comment.movie }}">
               <img class="poster-img" :src="getMoviePosterImg(comment.movie)" :alt="getMovieTitle(comment.movie)">
               {{ getMovieTitle(comment.movie) }}
             </router-link>
@@ -100,13 +100,18 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  color: rgb(110, 16, 197);
+  text-decoration-line: none;
+}
+
 .profileView {
   box-shadow: 0 20px 50px rgba(255, 127, 0, 0.3);
 }
 .comment {
   display: flex;
   margin: 20px;
-  margin-left: 80px;
+  margin-left: 20%;
   color: rgb(153, 78, 153);
   font-size: 17px;
 }
