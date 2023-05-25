@@ -1,26 +1,27 @@
 <template>
+
   <div>
     <div v-for="genre in genres" :key="genre.pk">
       <br>
       <hr class="divider">
+      <h2 class="genre">{{ genre.name }}</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
 
-      <div class="genre-wrapper">
-        <!-- 푸린이 이미지 -->
-        <!-- <img class="img" src= "../assets/char.webp" alt=""> -->
-        <h2 class="genre">{{ genre.name }}</h2>
-      </div>
+              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id, 10)" :key="index" :movie="movie" />
 
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <MovieList v-for="(movie, index) in genre.movies" :key="index" :movie="movie" />
-        </div>
+          </div>
         <div class="swiper-pagination"></div>
+        <!-- <swiper-pagination class="swiper-pagination"></swiper-pagination> -->
+        </div>
       </div>
-    </div>
   </div>
+
+
 </template>
 
 <script>
+// import "../public/script.js"
 import Swiper from 'swiper'
 import MovieList from '@/components/MovieList.vue'
 
@@ -48,7 +49,6 @@ export default {
       autoplay: {
         delay: 2500,
         disableOnInteraction: false
-        // disableOnInteraction: true
       }
     })
   },
@@ -56,7 +56,6 @@ export default {
   created() {
     this.getMovies()
     this.getGenres()
-    this.getMoviesByGenre()
   },
 
   computed: {
@@ -72,48 +71,25 @@ export default {
     getMovies() {
       this.$store.dispatch('getMovies')
     },
-
     getGenres() {
       this.$store.dispatch('getGenres')
     },
 
-    getMoviesByGenre() {
-      this.genres.forEach(genre => {
-        const moviesByGenre = this.movies.filter(movie => movie.genre_ids.includes(genre.id));
-        const selectedMovies = [];
+    getMoviesByGenre(genreId, count) {
+      const moviesByGenre = this.movies.filter(movie => movie.genre_ids.includes(genreId))
 
-        if (moviesByGenre.length <= 10) {
-          genre.movies = moviesByGenre
-        } else {
-          while (selectedMovies.length < 10) {
-            const randomIndex = Math.floor(Math.random() * moviesByGenre.length)
-            const randomMovie = moviesByGenre[randomIndex]
+      const sortedMovies = moviesByGenre.sort((a, b) => b.vote_average - a.vote_average)
 
-            if (!selectedMovies.includes(randomMovie)) {
-              selectedMovies.push(randomMovie)
-            }
-          }
-          genre.movies = selectedMovies
-        }
-      })
-    },
+      const topMovies = sortedMovies.slice(0, count)
+
+      return topMovies
+    }
+
   }
 }
 </script>
 
-
-
 <style scoped>
-.genre-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.img {
-  margin-bottom: 20px;
-  height: 50px;
-}
 
 *, ::after, ::before {
   box-sizing: unset;
