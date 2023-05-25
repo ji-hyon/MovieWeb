@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios'
-const YouTube_API = 'AIzaSyAlkWyxL_-iqIK9iHwO7MF8ibGl2RLa2HU'
+const YouTube_API = 'AIzaSyCPYpR-i_hLdrQKnzrV61u0nM1pxp8ci0o'
 
 export default {
     name : 'DetailMovie',
