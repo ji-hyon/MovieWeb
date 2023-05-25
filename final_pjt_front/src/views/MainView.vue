@@ -1,28 +1,20 @@
 <template>
-
   <div>
     <div v-for="genre in genres" :key="genre.pk">
       <br>
       <hr class="divider">
       <h2 class="genre">{{ genre.name }}</h2>
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-
-              <!-- <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id).slice(0, 5)" :key="index" :movie="movie" /> -->
-              <MovieList v-for="(movie, index) in getMoviesByGenre(genre.id, 5)" :key="index" :movie="movie" />
-
-          </div>
-        <!-- <div class="swiper-pagination"></div> -->
-        <swiper-pagination class="swiper-pagination"></swiper-pagination>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <MovieList v-for="(movie, index) in genre.movies" :key="index" :movie="movie" />
         </div>
+        <div class="swiper-pagination"></div>
       </div>
+    </div>
   </div>
-
-
 </template>
 
 <script>
-// import "../public/script.js"
 import Swiper from 'swiper'
 import MovieList from '@/components/MovieList.vue'
 
@@ -33,30 +25,31 @@ export default {
   },
 
   mounted() {
-  new Swiper('.swiper-container', {
-    slidesPerView: 'auto',
-    initialSlide: 2,
-    speed: 1000,
-    spaceBetween: 32,
-    loop: true,
-    centeredSlides: true,
-    roundLengths: true,
-    mousewheel: true,
-    grabCursor: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    autoplay: {
-      delay: 2500, // 3초마다 슬라이드 전환
-      disableOnInteraction: false // 사용자 상호작용 후에도 자동재생 유지
-    }
-  });
-},
+    new Swiper('.swiper-container', {
+      slidesPerView: 'auto',
+      initialSlide: 2,
+      speed: 1000,
+      spaceBetween: 32,
+      loop: true,
+      centeredSlides: true,
+      roundLengths: true,
+      mousewheel: true,
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      }
+    })
+  },
 
   created() {
     this.getMovies()
     this.getGenres()
+    this.getMoviesByGenre()
   },
 
   computed: {
@@ -72,51 +65,36 @@ export default {
     getMovies() {
       this.$store.dispatch('getMovies')
     },
+
     getGenres() {
       this.$store.dispatch('getGenres')
     },
-    // getMoviesByGenre(genreId) {
-    //   return this.movies.filter(movie => movie.genre_ids.includes(genreId))
-    // },
-    getMoviesByGenre(genreId, count) {
-      const moviesByGenre = this.movies.filter(movie => movie.genre_ids.includes(genreId));
-      const randomMovies = [];
-      const totalMovies = moviesByGenre.length;
 
-      if (count >= totalMovies) {
-        return moviesByGenre; // 장르에 속한 모든 영화를 반환
-      }
+    getMoviesByGenre() {
+      this.genres.forEach(genre => {
+        const moviesByGenre = this.movies.filter(movie => movie.genre_ids.includes(genre.id));
+        const selectedMovies = [];
 
-      while (randomMovies.length < count) {
-        const randomIndex = Math.floor(Math.random() * totalMovies);
-        const randomMovie = moviesByGenre[randomIndex];
+        if (moviesByGenre.length <= 10) {
+          genre.movies = moviesByGenre
+        } else {
+          while (selectedMovies.length < 10) {
+            const randomIndex = Math.floor(Math.random() * moviesByGenre.length)
+            const randomMovie = moviesByGenre[randomIndex]
 
-        if (!randomMovies.includes(randomMovie)) {
-          randomMovies.push(randomMovie);
+            if (!selectedMovies.includes(randomMovie)) {
+              selectedMovies.push(randomMovie)
+            }
+          }
+          genre.movies = selectedMovies
         }
-      }
-
-      return randomMovies;
+      })
     },
-
-    chunkedMoviesByGenre(genreId, size) {
-    const moviesByGenre = this.getMoviesByGenre(genreId)
-    const chunkedArray = []
-    let chunk = []
-    for (let i = 0; i < moviesByGenre.length; i++) {
-      chunk.push(moviesByGenre[i])
-      if (chunk.length === size || i === moviesByGenre.length - 1) {
-        chunkedArray.push(chunk)
-        chunk = []
-      }
-    }
-    return chunkedArray
-  },
-
-
   }
 }
 </script>
+
+
 
 <style scoped>
 
@@ -274,75 +252,3 @@ export default {
 }
 
 </style>
-
-
-
-<!--###################### 페이지 ############################-->
-<!-- <template>
-  <div>
-    <div class="d-flex flex-wrap justify-content-center">
-      <div class="d-flex flex-wrap justify-content-center">
-        <div v-for="(row, index) in paginatedMovies" :key="index" class="d-flex flex-wrap justify-content-center">
-          <div v-for="movie in row" :key="movie.id" class="w-25">
-            <MovieList :movie="movie" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-center mt-3">
-      <v-pagination v-model="currentPage" :page-count="totalPages" />
-    </div>
-  </div>
-</template>
-
-<script>
-import MovieList from '@/components/MovieList.vue'
-import vPagination from 'vue-plain-pagination'
-
-export default {
-  name: 'MainView',
-  components: {
-    MovieList,
-    vPagination,
-  },
-  data() {
-    return {
-      currentPage: 1,
-      itemsPerPage: 8,
-      moviesPerRow: 4,
-      rowsPerPage: 2,
-    }
-  },
-  computed: {
-    movies() {
-      return this.$store.state.movies
-    },
-    totalPages() {
-      return Math.ceil(this.movies.length / this.itemsPerPage)
-    },
-    paginatedMovies() {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage
-      const endIndex = startIndex + this.itemsPerPage
-      const slicedMovies = this.movies.slice(startIndex, endIndex)
-      return this.chunkArray(slicedMovies, this.moviesPerRow).slice(0, this.rowsPerPage)
-    },
-  },
-  created() {
-    this.getMovies()
-  },
-  methods: {
-    getMovies() {
-      this.$store.dispatch('getMovies')
-    },
-    chunkArray(array, size) {
-      const chunkedArray = []
-      for (let i = 0; i < array.length; i += size) {
-        const chunk = array.slice(i, i + size)
-        chunkedArray.push(chunk)
-      }
-      return chunkedArray
-    },
-  },
-}
-</script> -->
